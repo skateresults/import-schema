@@ -1,0 +1,107 @@
+{
+  "type": "object",
+  "properties": {
+    "athletes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "bib": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "club": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nation": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "IOC country code"
+          },
+          "ageGroupId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "bib",
+          "lastName",
+          "firstName",
+          "club",
+          "nation",
+          "ageGroupId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "ageGroups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name including the gender"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "female",
+              "male",
+              "mixed"
+            ]
+          },
+          "ageRange": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "description": "Minimum and maximum age"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "gender",
+          "ageRange"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "athletes",
+    "ageGroups"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
