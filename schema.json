@@ -1,6 +1,10 @@
 {
   "type": "object",
   "properties": {
+    "version": {
+      "type": "number",
+      "const": 1
+    },
     "athletes": {
       "type": "array",
       "items": {
@@ -99,6 +103,7 @@
     }
   },
   "required": [
+    "version",
     "athletes",
     "ageGroups"
   ],
