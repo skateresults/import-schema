@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { competition } from "./competition";
 
 export const ageGroup = z.strictObject({
   id: z.string(),
@@ -8,4 +9,6 @@ export const ageGroup = z.strictObject({
   ageRange: z
     .tuple([z.number(), z.number()])
     .describe("Minimum and maximum age"),
+
+  competitions: z.array(competition),
 });

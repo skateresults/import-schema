@@ -90,13 +90,41 @@
               }
             ],
             "description": "Minimum and maximum age"
+          },
+          "competitions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "distance": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "description": "Distance in meters"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "distance"
+              ],
+              "additionalProperties": false
+            }
           }
         },
         "required": [
           "id",
           "name",
           "gender",
-          "ageRange"
+          "ageRange",
+          "competitions"
         ],
         "additionalProperties": false
       }
