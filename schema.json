@@ -78,15 +78,22 @@
             ]
           },
           "ageRange": {
-            "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
-            "items": [
+            "anyOf": [
               {
-                "type": "number"
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
               },
               {
-                "type": "number"
+                "type": "null"
               }
             ],
             "description": "Minimum and maximum age"

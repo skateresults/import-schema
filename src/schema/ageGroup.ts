@@ -8,6 +8,7 @@ export const ageGroup = z.strictObject({
 
   ageRange: z
     .tuple([z.number(), z.number()])
+    .nullable()
     .describe("Minimum and maximum age"),
 
   competitions: z.array(competition),
