@@ -25,7 +25,7 @@
     "url": "https://github.com/skateresults/import-schema"
   },
   "devDependencies": {
-    "@types/node": "20.16.10",
+    "@types/node": "20.17.6",
     "tsx": "4.19.1",
     "typescript": "5.6.2",
     "zod": "3.23.8",
