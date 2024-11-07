@@ -115,12 +115,103 @@
                     "null"
                   ],
                   "description": "Distance in meters"
+                },
+                "rounds": {
+                  "type": "object",
+                  "properties": {
+                    "final-a": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "enum": [
+                            "open",
+                            "seeded",
+                            "done"
+                          ]
+                        },
+                        "timetableNumber": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "status",
+                        "timetableNumber"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "final-b": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-a/properties/status"
+                        },
+                        "timetableNumber": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "ascenders": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "status",
+                        "timetableNumber",
+                        "ascenders"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "final-c": {
+                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-b"
+                    },
+                    "final-d": {
+                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-b"
+                    },
+                    "semifinals": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-a/properties/status"
+                        },
+                        "timetableNumber": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "status",
+                        "timetableNumber"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "quarterfinals": {
+                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/semifinals"
+                    },
+                    "eighthfinals": {
+                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/semifinals"
+                    },
+                    "heats": {
+                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/semifinals"
+                    }
+                  },
+                  "required": [
+                    "final-a"
+                  ],
+                  "additionalProperties": false
                 }
               },
               "required": [
                 "id",
                 "name",
-                "distance"
+                "distance",
+                "rounds"
               ],
               "additionalProperties": false
             }
