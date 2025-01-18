@@ -29,6 +29,8 @@ export const competition = z.strictObject({
     "final-b": smallFinal.optional(),
     "final-c": smallFinal.optional(),
     "final-d": smallFinal.optional(),
+    "final-e": smallFinal.optional(),
+    "final-f": smallFinal.optional(),
     semifinals: qualificationRound.optional(),
     quarterfinals: qualificationRound.optional(),
     eighthfinals: qualificationRound.optional(),

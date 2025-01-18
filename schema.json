@@ -172,6 +172,12 @@
                     "final-d": {
                       "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-b"
                     },
+                    "final-e": {
+                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-b"
+                    },
+                    "final-f": {
+                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-b"
+                    },
                     "semifinals": {
                       "type": "object",
                       "properties": {
