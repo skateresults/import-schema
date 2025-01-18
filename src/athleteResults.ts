@@ -19,7 +19,7 @@ export const overallResult = strictObject({
 
 export const athleteResults = strictObject({
   overall: intersect([
-    pipe(object({ "0": overallResult }), description("Main Evaluation")),
-    record(pipe(string(), description("Evaluation ID")), overallResult),
+    pipe(object({ "0": overallResult }), description("Main evaluation")),
+    pipe(record(string(), overallResult), description("Key is the evaluation ID")),
   ]),
 });
