@@ -1,4 +1,5 @@
 import {
+  boolean,
   description,
   integer,
   intersect,
@@ -6,20 +7,73 @@ import {
   nullable,
   number,
   object,
+  optional,
   pipe,
   record,
   strictObject,
   string,
 } from "valibot";
 
-export const overallResult = strictObject({
+export const ranking = strictObject({
   rank: nullable(pipe(number(), minValue(1), integer())),
   points: nullable(pipe(number(), minValue(0), integer())),
 });
 
+export const time = strictObject({
+  seconds: pipe(number(), minValue(0)),
+  precision: pipe(number(), minValue(0), integer()),
+});
+
+export const raceResult = strictObject({
+  raceIndex: pipe(number(), minValue(0), integer()),
+
+  startPos: nullable(pipe(number(), minValue(1), integer())),
+  rank: nullable(pipe(number(), minValue(1), integer())),
+  time: nullable(time),
+  points: pipe(
+    nullable(pipe(number(), minValue(0), integer())),
+    description("Points in points race")
+  ),
+  remarks: string(),
+
+  rr: pipe(boolean(), description("Reduced in rank")),
+  dsqSF: pipe(boolean(), description("Disqualified by sports fault")),
+  dsqTF: pipe(boolean(), description("Disqualified by technical fault")),
+  fs1: pipe(boolean(), description("1st false start")),
+  warning1: pipe(boolean(), description("1st warning")),
+  warning2: pipe(boolean(), description("2nd warning")),
+  dns: pipe(boolean(), description("Did not start")),
+});
+
+export const competitionResult = strictObject({
+  // `picklist` is not supported by JSON schema
+  rounds: strictObject({
+    "final-a": optional(raceResult),
+    "final-b": optional(raceResult),
+    "final-c": optional(raceResult),
+    "final-d": optional(raceResult),
+    "final-e": optional(raceResult),
+    "final-f": optional(raceResult),
+    semifinals: optional(raceResult),
+    quarterfinals: optional(raceResult),
+    eighthfinals: optional(raceResult),
+    heats: optional(raceResult),
+  }),
+
+  ranking: intersect([
+    pipe(object({ "0": ranking }), description("Main evaluation")),
+    pipe(record(string(), ranking), description("Key is the evaluation ID")),
+  ]),
+});
+
 export const athleteResults = strictObject({
   overall: intersect([
-    pipe(object({ "0": overallResult }), description("Main evaluation")),
-    pipe(record(string(), overallResult), description("Key is the evaluation ID")),
+    pipe(object({ "0": ranking }), description("Main evaluation")),
+    pipe(record(string(), ranking), description("Key is the evaluation ID")),
   ]),
+
+  competitions: pipe(
+    record(string(), competitionResult),
+    description("Key is the competition ID")
+  ),
 });
