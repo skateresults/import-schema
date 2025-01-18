@@ -1,5 +1,6 @@
 import {
   description,
+  integer,
   literal,
   nullable,
   number,
@@ -10,14 +11,18 @@ import {
   union,
 } from "valibot";
 
-export const raceStatus = union([literal("open"), literal("seeded"), literal("done")]);
+export const raceStatus = union([
+  literal("open"),
+  literal("seeded"),
+  literal("done"),
+]);
 
-export const timetableNumber = nullable(number());
+export const timetableNumber = nullable(pipe(number(), integer()));
 
 export const smallFinal = strictObject({
   status: raceStatus,
   timetableNumber,
-  ascenders: number(),
+  ascenders: pipe(number(), integer()),
 });
 
 export const qualificationRound = strictObject({

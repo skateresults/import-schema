@@ -1,5 +1,6 @@
 import {
   description,
+  integer,
   nullable,
   number,
   pipe,
@@ -10,7 +11,7 @@ import { athleteResults } from "./athleteResults";
 
 export const athlete = strictObject({
   id: string(),
-  bib: nullable(number()),
+  bib: nullable(pipe(number(), integer())),
   lastName: string(),
   firstName: string(),
 
