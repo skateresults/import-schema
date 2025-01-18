@@ -2,6 +2,7 @@ import {
   description,
   integer,
   literal,
+  nonEmpty,
   nullable,
   number,
   optional,
@@ -31,7 +32,7 @@ export const qualificationRound = strictObject({
 });
 
 export const competition = strictObject({
-  id: string(),
+  id: pipe(string(), nonEmpty()),
   name: string(),
   distance: pipe(nullable(number()), description("Distance in meters")),
   rounds: strictObject({

@@ -3,6 +3,7 @@ import {
   description,
   integer,
   literal,
+  nonEmpty,
   number,
   optional,
   pipe,
@@ -16,7 +17,7 @@ import { competition } from "./competition";
 export const age = pipe(number(), integer(), description("Age in years"));
 
 export const ageGroup = strictObject({
-  id: string(),
+  id: pipe(string(), nonEmpty()),
   name: pipe(string(), description("Name including the gender")),
   gender: union([literal("female"), literal("male"), literal("mixed")]),
 
