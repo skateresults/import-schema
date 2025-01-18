@@ -6,6 +6,7 @@ import {
   strictObject,
   string,
 } from "valibot";
+import { athleteResults } from "./athleteResults";
 
 export const athlete = strictObject({
   id: string(),
@@ -17,4 +18,6 @@ export const athlete = strictObject({
   nation: pipe(nullable(string()), description("IOC country code")),
 
   ageGroupId: nullable(string()),
+
+  results: athleteResults,
 });

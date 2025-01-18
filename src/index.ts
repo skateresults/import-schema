@@ -5,6 +5,7 @@ import { ageGroup } from "./ageGroup";
 export * from "./athlete";
 export * from "./ageGroup";
 export * from "./competition";
+export * from "./athleteResults";
 
 export const root = strictObject({
   version: literal(1),
