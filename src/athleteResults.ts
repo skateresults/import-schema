@@ -1,6 +1,5 @@
 import {
   description,
-  InferOutput,
   integer,
   intersect,
   minValue,
