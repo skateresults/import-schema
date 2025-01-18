@@ -14,8 +14,8 @@ import {
 } from "valibot";
 
 export const overallResult = strictObject({
-  rank: nullable(pipe(number(), integer(), minValue(1))),
-  points: nullable(pipe(number(), integer(), minValue(0))),
+  rank: nullable(pipe(number(), minValue(1), integer())),
+  points: nullable(pipe(number(), minValue(0), integer())),
 });
 
 export const athleteResults = strictObject({
