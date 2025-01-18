@@ -78,7 +78,8 @@
         "club": {
           "anyOf": [
             {
-              "type": "string"
+              "type": "string",
+              "minLength": 1
             },
             {
               "type": "null"
@@ -99,7 +100,8 @@
         "ageGroupId": {
           "anyOf": [
             {
-              "type": "string"
+              "type": "string",
+              "minLength": 1
             },
             {
               "type": "null"
