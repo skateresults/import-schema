@@ -20,7 +20,7 @@ export const athlete = strictObject({
   club: nullable(pipe(string(), nonEmpty())),
   nation: pipe(nullable(string()), description("IOC country code")),
 
-  ageGroupId: nullable(string()),
+  ageGroupId: nullable(pipe(string(), nonEmpty())),
 
   results: athleteResults,
 });
