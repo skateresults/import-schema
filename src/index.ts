@@ -1,4 +1,13 @@
-import { array, description, literal, minLength, pipe, strictObject } from "valibot";
+import {
+  array,
+  description,
+  literal,
+  minLength,
+  nonEmpty,
+  pipe,
+  strictObject,
+  string,
+} from "valibot";
 import { athlete } from "./athlete";
 import { ageGroup } from "./ageGroup";
 import { evaluation } from "./evaluation";
@@ -11,6 +20,14 @@ export * from "./evaluation";
 
 export const root = strictObject({
   version: literal(1),
+  externalId: pipe(
+    string(),
+    nonEmpty(),
+    description(
+      "ID within competition software; used to avoid accidentally overwriting data within Skate Results"
+    )
+  ),
+
   athletes: array(athlete),
   ageGroups: array(ageGroup),
   evaluations: pipe(
