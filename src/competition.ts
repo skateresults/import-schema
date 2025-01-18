@@ -2,6 +2,7 @@ import {
   description,
   integer,
   literal,
+  minValue,
   nonEmpty,
   nullable,
   number,
@@ -23,7 +24,7 @@ export const timetableNumber = nullable(pipe(number(), integer()));
 export const smallFinal = strictObject({
   status: raceStatus,
   timetableNumber,
-  ascenders: pipe(number(), integer()),
+  ascenders: pipe(number(), minValue(0), integer()),
 });
 
 export const qualificationRound = strictObject({
@@ -33,7 +34,7 @@ export const qualificationRound = strictObject({
 
 export const competition = strictObject({
   id: pipe(string(), nonEmpty()),
-  name: string(),
+  name: pipe(string(), nonEmpty()),
   distance: pipe(nullable(number()), description("Distance in meters")),
   rounds: strictObject({
     "final-a": strictObject({

@@ -18,7 +18,7 @@ export const age = pipe(number(), integer(), description("Age in years"));
 
 export const ageGroup = strictObject({
   id: pipe(string(), nonEmpty()),
-  name: pipe(string(), description("Name including the gender")),
+  name: pipe(string(), nonEmpty(), description("Name including the gender")),
   gender: union([literal("female"), literal("male"), literal("mixed")]),
 
   ageRange: pipe(

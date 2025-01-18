@@ -14,8 +14,8 @@ import { athleteResults } from "./athleteResults";
 export const athlete = strictObject({
   id: pipe(string(), nonEmpty()),
   bib: nullable(pipe(number(), minValue(1), integer())),
-  lastName: string(),
-  firstName: string(),
+  lastName: pipe(string(), nonEmpty()),
+  firstName: pipe(string(), nonEmpty()),
 
   club: nullable(string()),
   nation: pipe(nullable(string()), description("IOC country code")),
