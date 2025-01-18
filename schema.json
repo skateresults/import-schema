@@ -34,7 +34,7 @@
         "bib": {
           "anyOf": [
             {
-              "type": "number"
+              "type": "integer"
             },
             {
               "type": "null"
@@ -77,6 +77,96 @@
               "type": "null"
             }
           ]
+        },
+        "results": {
+          "type": "object",
+          "properties": {
+            "overall": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "0": {
+                      "type": "object",
+                      "properties": {
+                        "rank": {
+                          "anyOf": [
+                            {
+                              "type": "integer",
+                              "minimum": 1
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "points": {
+                          "anyOf": [
+                            {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "rank",
+                        "points"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "0"
+                  ],
+                  "description": "Main evaluation"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "rank": {
+                        "anyOf": [
+                          {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "points": {
+                        "anyOf": [
+                          {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "rank",
+                      "points"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Key is the evaluation ID"
+                }
+              ]
+            }
+          },
+          "required": [
+            "overall"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
@@ -86,7 +176,8 @@
         "firstName",
         "club",
         "nation",
-        "ageGroupId"
+        "ageGroupId",
+        "results"
       ],
       "additionalProperties": false
     },
@@ -112,7 +203,7 @@
         "timetableNumber": {
           "anyOf": [
             {
-              "type": "number"
+              "type": "integer"
             },
             {
               "type": "null"
@@ -120,7 +211,7 @@
           ]
         },
         "ascenders": {
-          "type": "number"
+          "type": "integer"
         }
       },
       "required": [
@@ -139,7 +230,7 @@
         "timetableNumber": {
           "anyOf": [
             {
-              "type": "number"
+              "type": "integer"
             },
             {
               "type": "null"
@@ -185,7 +276,7 @@
                 "timetableNumber": {
                   "anyOf": [
                     {
-                      "type": "number"
+                      "type": "integer"
                     },
                     {
                       "type": "null"
@@ -268,10 +359,12 @@
           "type": "array",
           "items": [
             {
-              "type": "number"
+              "type": "integer",
+              "description": "Age in years"
             },
             {
-              "type": "number"
+              "type": "integer",
+              "description": "Age in years"
             }
           ],
           "additionalItems": false,
