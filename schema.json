@@ -16,12 +16,36 @@
       "items": {
         "$ref": "#/$defs/ageGroup"
       }
+    },
+    "evaluations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "description": "One evaluation must have id \"0\""
     }
   },
   "required": [
     "version",
     "athletes",
-    "ageGroups"
+    "ageGroups",
+    "evaluations"
   ],
   "additionalProperties": false,
   "$defs": {
