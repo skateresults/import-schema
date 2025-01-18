@@ -1,6 +1,7 @@
 import {
   description,
   integer,
+  length,
   minValue,
   nonEmpty,
   nullable,
@@ -18,8 +19,7 @@ export const athlete = strictObject({
   firstName: pipe(string(), nonEmpty()),
 
   club: nullable(pipe(string(), nonEmpty())),
-  nation: pipe(nullable(string()), description("IOC country code")),
-
+  nation: nullable(pipe(string(), length(3), description("IOC country code"))),
   ageGroupId: nullable(pipe(string(), nonEmpty())),
 
   results: athleteResults,
