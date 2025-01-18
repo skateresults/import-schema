@@ -1,236 +1,20 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
     "version": {
-      "type": "number",
       "const": 1
     },
     "athletes": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "bib": {
-            "type": [
-              "number",
-              "null"
-            ]
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "club": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "nation": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "IOC country code"
-          },
-          "ageGroupId": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        },
-        "required": [
-          "id",
-          "bib",
-          "lastName",
-          "firstName",
-          "club",
-          "nation",
-          "ageGroupId"
-        ],
-        "additionalProperties": false
+        "$ref": "#/$defs/athlete"
       }
     },
     "ageGroups": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name including the gender"
-          },
-          "gender": {
-            "type": "string",
-            "enum": [
-              "female",
-              "male",
-              "mixed"
-            ]
-          },
-          "ageRange": {
-            "anyOf": [
-              {
-                "type": "array",
-                "minItems": 2,
-                "maxItems": 2,
-                "items": [
-                  {
-                    "type": "number"
-                  },
-                  {
-                    "type": "number"
-                  }
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Minimum and maximum age"
-          },
-          "competitions": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "distance": {
-                  "type": [
-                    "number",
-                    "null"
-                  ],
-                  "description": "Distance in meters"
-                },
-                "rounds": {
-                  "type": "object",
-                  "properties": {
-                    "final-a": {
-                      "type": "object",
-                      "properties": {
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "open",
-                            "seeded",
-                            "done"
-                          ]
-                        },
-                        "timetableNumber": {
-                          "type": [
-                            "number",
-                            "null"
-                          ]
-                        }
-                      },
-                      "required": [
-                        "status",
-                        "timetableNumber"
-                      ],
-                      "additionalProperties": false
-                    },
-                    "final-b": {
-                      "type": "object",
-                      "properties": {
-                        "status": {
-                          "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-a/properties/status"
-                        },
-                        "timetableNumber": {
-                          "type": [
-                            "number",
-                            "null"
-                          ]
-                        },
-                        "ascenders": {
-                          "type": "number"
-                        }
-                      },
-                      "required": [
-                        "status",
-                        "timetableNumber",
-                        "ascenders"
-                      ],
-                      "additionalProperties": false
-                    },
-                    "final-c": {
-                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-b"
-                    },
-                    "final-d": {
-                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-b"
-                    },
-                    "final-e": {
-                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-b"
-                    },
-                    "final-f": {
-                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-b"
-                    },
-                    "semifinals": {
-                      "type": "object",
-                      "properties": {
-                        "status": {
-                          "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/final-a/properties/status"
-                        },
-                        "timetableNumber": {
-                          "type": [
-                            "number",
-                            "null"
-                          ]
-                        }
-                      },
-                      "required": [
-                        "status",
-                        "timetableNumber"
-                      ],
-                      "additionalProperties": false
-                    },
-                    "quarterfinals": {
-                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/semifinals"
-                    },
-                    "eighthfinals": {
-                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/semifinals"
-                    },
-                    "heats": {
-                      "$ref": "#/properties/ageGroups/items/properties/competitions/items/properties/rounds/properties/semifinals"
-                    }
-                  },
-                  "required": [
-                    "final-a"
-                  ],
-                  "additionalProperties": false
-                }
-              },
-              "required": [
-                "id",
-                "name",
-                "distance",
-                "rounds"
-              ],
-              "additionalProperties": false
-            }
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "gender",
-          "ageRange",
-          "competitions"
-        ],
-        "additionalProperties": false
+        "$ref": "#/$defs/ageGroup"
       }
     }
   },
@@ -240,5 +24,273 @@
     "ageGroups"
   ],
   "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "$defs": {
+    "athlete": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "bib": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "club": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "IOC country code"
+        },
+        "ageGroupId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "bib",
+        "lastName",
+        "firstName",
+        "club",
+        "nation",
+        "ageGroupId"
+      ],
+      "additionalProperties": false
+    },
+    "raceStatus": {
+      "anyOf": [
+        {
+          "const": "open"
+        },
+        {
+          "const": "seeded"
+        },
+        {
+          "const": "done"
+        }
+      ]
+    },
+    "smallFinal": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/raceStatus"
+        },
+        "timetableNumber": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ascenders": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "status",
+        "timetableNumber",
+        "ascenders"
+      ],
+      "additionalProperties": false
+    },
+    "qualificationRound": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/raceStatus"
+        },
+        "timetableNumber": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "timetableNumber"
+      ],
+      "additionalProperties": false
+    },
+    "competition": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "distance": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Distance in meters"
+        },
+        "rounds": {
+          "type": "object",
+          "properties": {
+            "final-a": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "$ref": "#/$defs/raceStatus"
+                },
+                "timetableNumber": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "timetableNumber"
+              ],
+              "additionalProperties": false
+            },
+            "final-b": {
+              "$ref": "#/$defs/smallFinal"
+            },
+            "final-c": {
+              "$ref": "#/$defs/smallFinal"
+            },
+            "final-d": {
+              "$ref": "#/$defs/smallFinal"
+            },
+            "final-e": {
+              "$ref": "#/$defs/smallFinal"
+            },
+            "final-f": {
+              "$ref": "#/$defs/smallFinal"
+            },
+            "semifinals": {
+              "$ref": "#/$defs/qualificationRound"
+            },
+            "quarterfinals": {
+              "$ref": "#/$defs/qualificationRound"
+            },
+            "eighthfinals": {
+              "$ref": "#/$defs/qualificationRound"
+            },
+            "heats": {
+              "$ref": "#/$defs/qualificationRound"
+            }
+          },
+          "required": [
+            "final-a"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "distance",
+        "rounds"
+      ],
+      "additionalProperties": false
+    },
+    "ageGroup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name including the gender"
+        },
+        "gender": {
+          "anyOf": [
+            {
+              "const": "female"
+            },
+            {
+              "const": "male"
+            },
+            {
+              "const": "mixed"
+            }
+          ]
+        },
+        "ageRange": {
+          "type": "array",
+          "items": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "additionalItems": false,
+          "description": "Minimum and maximum age"
+        },
+        "competitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/competition"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "gender",
+        "competitions"
+      ],
+      "additionalProperties": false
+    }
+  }
 }

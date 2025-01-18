@@ -1,13 +1,20 @@
-import { z } from "zod";
+import {
+  description,
+  nullable,
+  number,
+  pipe,
+  strictObject,
+  string,
+} from "valibot";
 
-export const athlete = z.strictObject({
-  id: z.string(),
-  bib: z.number().nullable(),
-  lastName: z.string(),
-  firstName: z.string(),
+export const athlete = strictObject({
+  id: string(),
+  bib: nullable(number()),
+  lastName: string(),
+  firstName: string(),
 
-  club: z.string().nullable(),
-  nation: z.string().nullable().describe("IOC country code"),
+  club: nullable(string()),
+  nation: pipe(nullable(string()), description("IOC country code")),
 
-  ageGroupId: z.string().nullable(),
+  ageGroupId: nullable(string()),
 });

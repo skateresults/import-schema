@@ -1,39 +1,47 @@
-import { z } from "zod";
+import {
+  description,
+  literal,
+  nullable,
+  number,
+  optional,
+  pipe,
+  strictObject,
+  string,
+  union,
+} from "valibot";
 
-const raceStatus = z.union([
-  z.literal("open"),
-  z.literal("seeded"),
-  z.literal("done"),
-]);
+export const raceStatus = union([literal("open"), literal("seeded"), literal("done")]);
 
-const smallFinal = z.strictObject({
+export const timetableNumber = nullable(number());
+
+export const smallFinal = strictObject({
   status: raceStatus,
-  timetableNumber: z.number().nullable(),
-  ascenders: z.number(),
+  timetableNumber,
+  ascenders: number(),
 });
 
-const qualificationRound = z.strictObject({
+export const qualificationRound = strictObject({
   status: raceStatus,
-  timetableNumber: z.number().nullable(),
+  timetableNumber,
 });
 
-export const competition = z.strictObject({
-  id: z.string(),
-  name: z.string(),
-  distance: z.number().nullable().describe("Distance in meters"),
-  rounds: z.strictObject({
-    "final-a": z.strictObject({
+export const competition = strictObject({
+  id: string(),
+  name: string(),
+  distance: pipe(nullable(number()), description("Distance in meters")),
+  rounds: strictObject({
+    "final-a": strictObject({
       status: raceStatus,
-      timetableNumber: z.number().nullable(),
+      timetableNumber,
     }),
-    "final-b": smallFinal.optional(),
-    "final-c": smallFinal.optional(),
-    "final-d": smallFinal.optional(),
-    "final-e": smallFinal.optional(),
-    "final-f": smallFinal.optional(),
-    semifinals: qualificationRound.optional(),
-    quarterfinals: qualificationRound.optional(),
-    eighthfinals: qualificationRound.optional(),
-    heats: qualificationRound.optional(),
+    "final-b": optional(smallFinal),
+    "final-c": optional(smallFinal),
+    "final-d": optional(smallFinal),
+    "final-e": optional(smallFinal),
+    "final-f": optional(smallFinal),
+    semifinals: optional(qualificationRound),
+    quarterfinals: optional(qualificationRound),
+    eighthfinals: optional(qualificationRound),
+    heats: optional(qualificationRound),
   }),
 });

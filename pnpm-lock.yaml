@@ -11,18 +11,18 @@ importers:
       '@types/node':
         specifier: 20.16.10
         version: 20.16.10
+      '@valibot/to-json-schema':
+        specifier: 1.0.0-beta.4
+        version: 1.0.0-beta.4(valibot@1.0.0-beta.12(typescript@5.6.2))
       tsx:
         specifier: 4.19.1
         version: 4.19.1
       typescript:
         specifier: 5.6.2
         version: 5.6.2
-      zod:
-        specifier: 3.23.8
-        version: 3.23.8
-      zod-to-json-schema:
-        specifier: 3.23.3
-        version: 3.23.3(zod@3.23.8)
+      valibot:
+        specifier: 1.0.0-beta.12
+        version: 1.0.0-beta.12(typescript@5.6.2)
 
 packages:
 
@@ -173,6 +173,11 @@ packages:
   '@types/node@20.16.10':
     resolution: {integrity: sha512-vQUKgWTjEIRFCvK6CyriPH3MZYiYlNy0fKiEYHWbcoWLEgs4opurGGKlebrTLqdSMIbXImH6XExNiIyNUv3WpA==}
 
+  '@valibot/to-json-schema@1.0.0-beta.4':
+    resolution: {integrity: sha512-wXBdCyoqec+NLCl5ihitXzZXD4JAjPK3+HfskSXzfhiNFvKje0A/v1LygqKidUgIbaJtREmq/poJGbaS/0MKuQ==}
+    peerDependencies:
+      valibot: ^1.0.0 || ^1.0.0-beta.5 || ^1.0.0-rc
+
   esbuild@0.23.1:
     resolution: {integrity: sha512-VVNz/9Sa0bs5SELtn3f7qhJCDPCF5oMEl5cO9/SSinpE9hbPVvxbd572HH5AKiP7WD8INO53GgfDDhRjkylHEg==}
     engines: {node: '>=18'}
@@ -202,13 +207,13 @@ packages:
   undici-types@6.19.8:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
-  zod-to-json-schema@3.23.3:
-    resolution: {integrity: sha512-TYWChTxKQbRJp5ST22o/Irt9KC5nj7CdBKYB/AosCRdj/wxEMvv4NNaj9XVUHDOIp53ZxArGhnw5HMZziPFjog==}
+  valibot@1.0.0-beta.12:
+    resolution: {integrity: sha512-j3WIxJ0pmUFMfdfUECn3YnZPYOiG0yHYcFEa/+RVgo0I+MXE3ToLt7gNRLtY5pwGfgNmsmhenGZfU5suu9ijUA==}
     peerDependencies:
-      zod: ^3.23.3
-
-  zod@3.23.8:
-    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+      typescript: '>=5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
 
 snapshots:
 
@@ -288,6 +293,10 @@ snapshots:
     dependencies:
       undici-types: 6.19.8
 
+  '@valibot/to-json-schema@1.0.0-beta.4(valibot@1.0.0-beta.12(typescript@5.6.2))':
+    dependencies:
+      valibot: 1.0.0-beta.12(typescript@5.6.2)
+
   esbuild@0.23.1:
     optionalDependencies:
       '@esbuild/aix-ppc64': 0.23.1
@@ -335,8 +344,6 @@ snapshots:
 
   undici-types@6.19.8: {}
 
-  zod-to-json-schema@3.23.3(zod@3.23.8):
-    dependencies:
-      zod: 3.23.8
-
-  zod@3.23.8: {}
+  valibot@1.0.0-beta.12(typescript@5.6.2):
+    optionalDependencies:
+      typescript: 5.6.2

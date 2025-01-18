@@ -1,9 +1,13 @@
-import { z } from "zod";
+import { array, literal, strictObject } from "valibot";
 import { athlete } from "./athlete";
 import { ageGroup } from "./ageGroup";
 
-export const schema = z.strictObject({
-  version: z.literal(1),
-  athletes: z.array(athlete),
-  ageGroups: z.array(ageGroup),
+export * from "./athlete";
+export * from "./ageGroup";
+export * from "./competition";
+
+export const root = strictObject({
+  version: literal(1),
+  athletes: array(athlete),
+  ageGroups: array(ageGroup),
 });
