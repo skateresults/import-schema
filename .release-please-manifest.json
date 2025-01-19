@@ -1,3 +1,4 @@
 {
-  "bump-patch-for-minor-pre-major": true
+  "bump-patch-for-minor-pre-major": true,
+  ".": "1.0.0"
 }
