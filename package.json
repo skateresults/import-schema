@@ -24,11 +24,13 @@
     "type": "git",
     "url": "https://github.com/skateresults/import-schema"
   },
+  "dependencies": {
+    "valibot": "1.0.0-beta.12"
+  },
   "devDependencies": {
     "@types/node": "20.16.10",
     "@valibot/to-json-schema": "1.0.0-beta.4",
     "tsx": "4.19.1",
-    "typescript": "5.6.2",
-    "valibot": "1.0.0-beta.12"
+    "typescript": "5.6.2"
   }
 }
