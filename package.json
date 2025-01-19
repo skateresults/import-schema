@@ -28,6 +28,10 @@
     "type": "git",
     "url": "https://github.com/skateresults/import-schema"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
   "dependencies": {
     "valibot": "1.0.0-beta.12"
   },

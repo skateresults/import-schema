@@ -1,0 +1,19 @@
+name: Build
+description: Builds the library
+
+runs:
+  using: "composite"
+
+  steps:
+    - uses: pnpm/action-setup@v4.0.0
+    - name: Setup node
+      uses: actions/setup-node@v4.1.0
+      with:
+        node-version-file: ".nvmrc"
+        cache: "pnpm"
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      shell: bash
+    - run: pnpm run build
+      shell: bash
