@@ -8,15 +8,15 @@ import {
   strictObject,
   string,
 } from "valibot";
-import { athlete } from "./athlete";
-import { ageGroup } from "./ageGroup";
-import { evaluation } from "./evaluation";
+import { athlete } from "./athlete.js";
+import { ageGroup } from "./ageGroup.js";
+import { evaluation } from "./evaluation.js";
 
-export * from "./athlete";
-export * from "./athleteResults";
-export * from "./ageGroup";
-export * from "./competition";
-export * from "./evaluation";
+export * from "./athlete.js";
+export * from "./athleteResults.js";
+export * from "./ageGroup.js";
+export * from "./competition.js";
+export * from "./evaluation.js";
 
 export const root = strictObject({
   version: literal(1),

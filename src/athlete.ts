@@ -10,7 +10,7 @@ import {
   strictObject,
   string,
 } from "valibot";
-import { athleteResults } from "./athleteResults";
+import { athleteResults } from "./athleteResults.js";
 
 export const athlete = strictObject({
   id: pipe(string(), nonEmpty()),

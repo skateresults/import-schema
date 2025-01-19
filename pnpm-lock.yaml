@@ -12,6 +12,9 @@ importers:
         specifier: 1.0.0-beta.12
         version: 1.0.0-beta.12(typescript@5.6.2)
     devDependencies:
+      '@tsconfig/recommended':
+        specifier: 1.0.8
+        version: 1.0.8
       '@types/node':
         specifier: 20.16.10
         version: 20.16.10
@@ -171,6 +174,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@tsconfig/recommended@1.0.8':
+    resolution: {integrity: sha512-TotjFaaXveVUdsrXCdalyF6E5RyG6+7hHHQVZonQtdlk1rJZ1myDIvPUUKPhoYv+JAzThb2lQJh9+9ZfF46hsA==}
+
   '@types/node@20.16.10':
     resolution: {integrity: sha512-vQUKgWTjEIRFCvK6CyriPH3MZYiYlNy0fKiEYHWbcoWLEgs4opurGGKlebrTLqdSMIbXImH6XExNiIyNUv3WpA==}
 
@@ -289,6 +295,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.23.1':
     optional: true
+
+  '@tsconfig/recommended@1.0.8': {}
 
   '@types/node@20.16.10':
     dependencies:

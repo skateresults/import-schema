@@ -12,7 +12,7 @@ import {
   tuple,
   union,
 } from "valibot";
-import { competition } from "./competition";
+import { competition } from "./competition.js";
 
 export const age = pipe(number(), integer(), description("Age in years"));
 
