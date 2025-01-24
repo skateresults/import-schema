@@ -16,8 +16,8 @@ importers:
         specifier: 1.0.8
         version: 1.0.8
       '@types/node':
-        specifier: 20.16.10
-        version: 20.16.10
+        specifier: 22.10.9
+        version: 22.10.9
       '@valibot/to-json-schema':
         specifier: 1.0.0-beta.4
         version: 1.0.0-beta.4(valibot@1.0.0-beta.12(typescript@5.6.2))
@@ -177,8 +177,8 @@ packages:
   '@tsconfig/recommended@1.0.8':
     resolution: {integrity: sha512-TotjFaaXveVUdsrXCdalyF6E5RyG6+7hHHQVZonQtdlk1rJZ1myDIvPUUKPhoYv+JAzThb2lQJh9+9ZfF46hsA==}
 
-  '@types/node@20.16.10':
-    resolution: {integrity: sha512-vQUKgWTjEIRFCvK6CyriPH3MZYiYlNy0fKiEYHWbcoWLEgs4opurGGKlebrTLqdSMIbXImH6XExNiIyNUv3WpA==}
+  '@types/node@22.10.9':
+    resolution: {integrity: sha512-Ir6hwgsKyNESl/gLOcEz3krR4CBGgliDqBQ2ma4wIhEx0w+xnoeTq3tdrNw15kU3SxogDjOgv9sqdtLW8mIHaw==}
 
   '@valibot/to-json-schema@1.0.0-beta.4':
     resolution: {integrity: sha512-wXBdCyoqec+NLCl5ihitXzZXD4JAjPK3+HfskSXzfhiNFvKje0A/v1LygqKidUgIbaJtREmq/poJGbaS/0MKuQ==}
@@ -211,8 +211,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  undici-types@6.19.8:
-    resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
+  undici-types@6.20.0:
+    resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
 
   valibot@1.0.0-beta.12:
     resolution: {integrity: sha512-j3WIxJ0pmUFMfdfUECn3YnZPYOiG0yHYcFEa/+RVgo0I+MXE3ToLt7gNRLtY5pwGfgNmsmhenGZfU5suu9ijUA==}
@@ -298,9 +298,9 @@ snapshots:
 
   '@tsconfig/recommended@1.0.8': {}
 
-  '@types/node@20.16.10':
+  '@types/node@22.10.9':
     dependencies:
-      undici-types: 6.19.8
+      undici-types: 6.20.0
 
   '@valibot/to-json-schema@1.0.0-beta.4(valibot@1.0.0-beta.12(typescript@5.6.2))':
     dependencies:
@@ -351,7 +351,7 @@ snapshots:
 
   typescript@5.6.2: {}
 
-  undici-types@6.19.8: {}
+  undici-types@6.20.0: {}
 
   valibot@1.0.0-beta.12(typescript@5.6.2):
     optionalDependencies:
