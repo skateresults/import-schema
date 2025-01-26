@@ -1,31 +1,29 @@
+import { toJsonSchema } from "@valibot/to-json-schema";
+import { writeFile } from "node:fs/promises";
 import {
+  age,
   ageGroup,
   athlete,
   competition,
-  qualifiers,
-  qualificationRace,
-  qualificationRound,
+  competitionRanking,
+  competitionResult,
+  competitionResults,
+  evaluation,
+  overallRanking,
+  overallResults,
+  qualificationRule,
+  qualificationCount,
+  race,
+  raceResult,
   raceStatus,
   root,
+  round,
+  roundId,
   roundLabel,
   roundStatus,
-  smallFinal,
-  evaluation,
-  qualifiersByRank,
-  age,
-  qualifiersCount,
-  qualifiersByTime,
-  timetableNumber,
   time,
-  raceResult,
-  competitionResult,
-  competitionRanking,
-  competitionResults,
-  overallResults,
-  overallRanking,
+  timetableNumber,
 } from "../src";
-import { toJsonSchema } from "@valibot/to-json-schema";
-import { writeFile } from "node:fs/promises";
 
 const jsonSchema = toJsonSchema(root, {
   definitions: {
@@ -40,18 +38,17 @@ const jsonSchema = toJsonSchema(root, {
     overallResults,
     // athlete.ts
     athlete,
-    // competition.ts
+    // round.ts
     raceStatus,
     roundStatus,
     roundLabel,
     timetableNumber,
-    smallFinal,
-    qualifiersCount,
-    qualifiersByRank,
-    qualifiersByTime,
-    qualifiers,
-    qualificationRace,
-    qualificationRound,
+    qualificationCount,
+    race,
+    roundId,
+    qualificationRule,
+    round,
+    // competition.ts
     competition,
     // ageGroup.ts
     age,
