@@ -404,13 +404,13 @@
             "overall": {
               "$ref": "#/$defs/overallResults"
             },
-            "competition": {
+            "competitions": {
               "$ref": "#/$defs/competitionResults"
             }
           },
           "required": [
             "overall",
-            "competition"
+            "competitions"
           ],
           "additionalProperties": false
         }

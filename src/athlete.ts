@@ -33,6 +33,6 @@ export const athlete = strictObject({
 
   results: strictObject({
     overall: overallResults,
-    competition: competitionResults,
+    competitions: competitionResults,
   }),
 });
