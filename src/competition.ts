@@ -32,14 +32,10 @@ export const smallFinal = strictObject({
   label: optional(roundLabel),
 });
 
-export const qualifiers = strictObject({
-  byTime: pipe(number(), minValue(0), integer()),
-  byRank: pipe(number(), minValue(0), integer()),
-});
-
-export const qualifiersByRank = strictObject({
-  byRank: pipe(number(), minValue(0), integer()),
-});
+export const qualifiersCount = pipe(number(), minValue(0), integer());
+export const qualifiersByTime = strictObject({ byTime: qualifiersCount });
+export const qualifiersByRank = strictObject({ byRank: qualifiersCount });
+export const qualifiers = intersect([qualifiersByTime, qualifiersByRank]);
 
 export const qualificationRace = strictObject({
   status: raceStatus,

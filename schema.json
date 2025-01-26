@@ -40,6 +40,266 @@
   ],
   "additionalProperties": false,
   "$defs": {
+    "ranking": {
+      "type": "object",
+      "properties": {
+        "rank": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "points": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "rank",
+        "points"
+      ],
+      "additionalProperties": false
+    },
+    "time": {
+      "type": "object",
+      "properties": {
+        "seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "precision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "seconds",
+        "precision"
+      ],
+      "additionalProperties": false
+    },
+    "raceResult": {
+      "type": "object",
+      "properties": {
+        "raceIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "startPos": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rank": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "time": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "points": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Points in points race"
+        },
+        "remarks": {
+          "type": "string"
+        },
+        "rr": {
+          "type": "boolean",
+          "description": "Reduced in rank"
+        },
+        "dsqSF": {
+          "type": "boolean",
+          "description": "Disqualified by sports fault"
+        },
+        "dsqTF": {
+          "type": "boolean",
+          "description": "Disqualified by technical fault"
+        },
+        "fs1": {
+          "type": "boolean",
+          "description": "1st false start"
+        },
+        "warning1": {
+          "type": "boolean",
+          "description": "1st warning"
+        },
+        "warning2": {
+          "type": "boolean",
+          "description": "2nd warning"
+        },
+        "dns": {
+          "type": "boolean",
+          "description": "Did not start"
+        }
+      },
+      "required": [
+        "raceIndex",
+        "startPos",
+        "rank",
+        "time",
+        "points",
+        "remarks",
+        "rr",
+        "dsqSF",
+        "dsqTF",
+        "fs1",
+        "warning1",
+        "warning2",
+        "dns"
+      ],
+      "additionalProperties": false
+    },
+    "competitionResult": {
+      "type": "object",
+      "properties": {
+        "rounds": {
+          "type": "object",
+          "properties": {
+            "final-a": {
+              "$ref": "#/$defs/raceResult"
+            },
+            "final-b": {
+              "$ref": "#/$defs/raceResult"
+            },
+            "final-c": {
+              "$ref": "#/$defs/raceResult"
+            },
+            "final-d": {
+              "$ref": "#/$defs/raceResult"
+            },
+            "final-e": {
+              "$ref": "#/$defs/raceResult"
+            },
+            "final-f": {
+              "$ref": "#/$defs/raceResult"
+            },
+            "semifinals": {
+              "$ref": "#/$defs/raceResult"
+            },
+            "quarterfinals": {
+              "$ref": "#/$defs/raceResult"
+            },
+            "eighthfinals": {
+              "$ref": "#/$defs/raceResult"
+            },
+            "heats": {
+              "$ref": "#/$defs/raceResult"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "ranking": {
+          "allOf": [
+            {
+              "type": "object",
+              "properties": {
+                "0": {
+                  "$ref": "#/$defs/ranking"
+                }
+              },
+              "required": [
+                "0"
+              ],
+              "description": "Main evaluation"
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/ranking"
+              },
+              "description": "Key is the evaluation ID"
+            }
+          ]
+        }
+      },
+      "required": [
+        "rounds",
+        "ranking"
+      ],
+      "additionalProperties": false
+    },
+    "athleteResults": {
+      "type": "object",
+      "properties": {
+        "overall": {
+          "allOf": [
+            {
+              "type": "object",
+              "properties": {
+                "0": {
+                  "$ref": "#/$defs/ranking"
+                }
+              },
+              "required": [
+                "0"
+              ],
+              "description": "Main evaluation"
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/ranking"
+              },
+              "description": "Key is the evaluation ID"
+            }
+          ]
+        },
+        "competitions": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/competitionResult"
+          },
+          "description": "Key is the competition ID"
+        }
+      },
+      "required": [
+        "overall",
+        "competitions"
+      ],
+      "additionalProperties": false
+    },
     "athlete": {
       "type": "object",
       "properties": {
@@ -115,1347 +375,7 @@
           "description": "Evaluations the athlete is ranked in"
         },
         "results": {
-          "type": "object",
-          "properties": {
-            "overall": {
-              "allOf": [
-                {
-                  "type": "object",
-                  "properties": {
-                    "0": {
-                      "type": "object",
-                      "properties": {
-                        "rank": {
-                          "anyOf": [
-                            {
-                              "type": "integer",
-                              "minimum": 1
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
-                        },
-                        "points": {
-                          "anyOf": [
-                            {
-                              "type": "integer",
-                              "minimum": 0
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
-                        }
-                      },
-                      "required": [
-                        "rank",
-                        "points"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "0"
-                  ],
-                  "description": "Main evaluation"
-                },
-                {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "object",
-                    "properties": {
-                      "rank": {
-                        "anyOf": [
-                          {
-                            "type": "integer",
-                            "minimum": 1
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
-                      },
-                      "points": {
-                        "anyOf": [
-                          {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
-                      }
-                    },
-                    "required": [
-                      "rank",
-                      "points"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "description": "Key is the evaluation ID"
-                }
-              ]
-            },
-            "competitions": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "rounds": {
-                    "type": "object",
-                    "properties": {
-                      "final-a": {
-                        "type": "object",
-                        "properties": {
-                          "raceIndex": {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          "startPos": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "rank": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "time": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "seconds": {
-                                    "type": "number",
-                                    "minimum": 0
-                                  },
-                                  "precision": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                  }
-                                },
-                                "required": [
-                                  "seconds",
-                                  "precision"
-                                ],
-                                "additionalProperties": false
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "points": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 0
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ],
-                            "description": "Points in points race"
-                          },
-                          "remarks": {
-                            "type": "string"
-                          },
-                          "rr": {
-                            "type": "boolean",
-                            "description": "Reduced in rank"
-                          },
-                          "dsqSF": {
-                            "type": "boolean",
-                            "description": "Disqualified by sports fault"
-                          },
-                          "dsqTF": {
-                            "type": "boolean",
-                            "description": "Disqualified by technical fault"
-                          },
-                          "fs1": {
-                            "type": "boolean",
-                            "description": "1st false start"
-                          },
-                          "warning1": {
-                            "type": "boolean",
-                            "description": "1st warning"
-                          },
-                          "warning2": {
-                            "type": "boolean",
-                            "description": "2nd warning"
-                          },
-                          "dns": {
-                            "type": "boolean",
-                            "description": "Did not start"
-                          }
-                        },
-                        "required": [
-                          "raceIndex",
-                          "startPos",
-                          "rank",
-                          "time",
-                          "points",
-                          "remarks",
-                          "rr",
-                          "dsqSF",
-                          "dsqTF",
-                          "fs1",
-                          "warning1",
-                          "warning2",
-                          "dns"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "final-b": {
-                        "type": "object",
-                        "properties": {
-                          "raceIndex": {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          "startPos": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "rank": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "time": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "seconds": {
-                                    "type": "number",
-                                    "minimum": 0
-                                  },
-                                  "precision": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                  }
-                                },
-                                "required": [
-                                  "seconds",
-                                  "precision"
-                                ],
-                                "additionalProperties": false
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "points": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 0
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ],
-                            "description": "Points in points race"
-                          },
-                          "remarks": {
-                            "type": "string"
-                          },
-                          "rr": {
-                            "type": "boolean",
-                            "description": "Reduced in rank"
-                          },
-                          "dsqSF": {
-                            "type": "boolean",
-                            "description": "Disqualified by sports fault"
-                          },
-                          "dsqTF": {
-                            "type": "boolean",
-                            "description": "Disqualified by technical fault"
-                          },
-                          "fs1": {
-                            "type": "boolean",
-                            "description": "1st false start"
-                          },
-                          "warning1": {
-                            "type": "boolean",
-                            "description": "1st warning"
-                          },
-                          "warning2": {
-                            "type": "boolean",
-                            "description": "2nd warning"
-                          },
-                          "dns": {
-                            "type": "boolean",
-                            "description": "Did not start"
-                          }
-                        },
-                        "required": [
-                          "raceIndex",
-                          "startPos",
-                          "rank",
-                          "time",
-                          "points",
-                          "remarks",
-                          "rr",
-                          "dsqSF",
-                          "dsqTF",
-                          "fs1",
-                          "warning1",
-                          "warning2",
-                          "dns"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "final-c": {
-                        "type": "object",
-                        "properties": {
-                          "raceIndex": {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          "startPos": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "rank": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "time": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "seconds": {
-                                    "type": "number",
-                                    "minimum": 0
-                                  },
-                                  "precision": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                  }
-                                },
-                                "required": [
-                                  "seconds",
-                                  "precision"
-                                ],
-                                "additionalProperties": false
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "points": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 0
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ],
-                            "description": "Points in points race"
-                          },
-                          "remarks": {
-                            "type": "string"
-                          },
-                          "rr": {
-                            "type": "boolean",
-                            "description": "Reduced in rank"
-                          },
-                          "dsqSF": {
-                            "type": "boolean",
-                            "description": "Disqualified by sports fault"
-                          },
-                          "dsqTF": {
-                            "type": "boolean",
-                            "description": "Disqualified by technical fault"
-                          },
-                          "fs1": {
-                            "type": "boolean",
-                            "description": "1st false start"
-                          },
-                          "warning1": {
-                            "type": "boolean",
-                            "description": "1st warning"
-                          },
-                          "warning2": {
-                            "type": "boolean",
-                            "description": "2nd warning"
-                          },
-                          "dns": {
-                            "type": "boolean",
-                            "description": "Did not start"
-                          }
-                        },
-                        "required": [
-                          "raceIndex",
-                          "startPos",
-                          "rank",
-                          "time",
-                          "points",
-                          "remarks",
-                          "rr",
-                          "dsqSF",
-                          "dsqTF",
-                          "fs1",
-                          "warning1",
-                          "warning2",
-                          "dns"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "final-d": {
-                        "type": "object",
-                        "properties": {
-                          "raceIndex": {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          "startPos": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "rank": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "time": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "seconds": {
-                                    "type": "number",
-                                    "minimum": 0
-                                  },
-                                  "precision": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                  }
-                                },
-                                "required": [
-                                  "seconds",
-                                  "precision"
-                                ],
-                                "additionalProperties": false
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "points": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 0
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ],
-                            "description": "Points in points race"
-                          },
-                          "remarks": {
-                            "type": "string"
-                          },
-                          "rr": {
-                            "type": "boolean",
-                            "description": "Reduced in rank"
-                          },
-                          "dsqSF": {
-                            "type": "boolean",
-                            "description": "Disqualified by sports fault"
-                          },
-                          "dsqTF": {
-                            "type": "boolean",
-                            "description": "Disqualified by technical fault"
-                          },
-                          "fs1": {
-                            "type": "boolean",
-                            "description": "1st false start"
-                          },
-                          "warning1": {
-                            "type": "boolean",
-                            "description": "1st warning"
-                          },
-                          "warning2": {
-                            "type": "boolean",
-                            "description": "2nd warning"
-                          },
-                          "dns": {
-                            "type": "boolean",
-                            "description": "Did not start"
-                          }
-                        },
-                        "required": [
-                          "raceIndex",
-                          "startPos",
-                          "rank",
-                          "time",
-                          "points",
-                          "remarks",
-                          "rr",
-                          "dsqSF",
-                          "dsqTF",
-                          "fs1",
-                          "warning1",
-                          "warning2",
-                          "dns"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "final-e": {
-                        "type": "object",
-                        "properties": {
-                          "raceIndex": {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          "startPos": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "rank": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "time": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "seconds": {
-                                    "type": "number",
-                                    "minimum": 0
-                                  },
-                                  "precision": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                  }
-                                },
-                                "required": [
-                                  "seconds",
-                                  "precision"
-                                ],
-                                "additionalProperties": false
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "points": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 0
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ],
-                            "description": "Points in points race"
-                          },
-                          "remarks": {
-                            "type": "string"
-                          },
-                          "rr": {
-                            "type": "boolean",
-                            "description": "Reduced in rank"
-                          },
-                          "dsqSF": {
-                            "type": "boolean",
-                            "description": "Disqualified by sports fault"
-                          },
-                          "dsqTF": {
-                            "type": "boolean",
-                            "description": "Disqualified by technical fault"
-                          },
-                          "fs1": {
-                            "type": "boolean",
-                            "description": "1st false start"
-                          },
-                          "warning1": {
-                            "type": "boolean",
-                            "description": "1st warning"
-                          },
-                          "warning2": {
-                            "type": "boolean",
-                            "description": "2nd warning"
-                          },
-                          "dns": {
-                            "type": "boolean",
-                            "description": "Did not start"
-                          }
-                        },
-                        "required": [
-                          "raceIndex",
-                          "startPos",
-                          "rank",
-                          "time",
-                          "points",
-                          "remarks",
-                          "rr",
-                          "dsqSF",
-                          "dsqTF",
-                          "fs1",
-                          "warning1",
-                          "warning2",
-                          "dns"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "final-f": {
-                        "type": "object",
-                        "properties": {
-                          "raceIndex": {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          "startPos": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "rank": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "time": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "seconds": {
-                                    "type": "number",
-                                    "minimum": 0
-                                  },
-                                  "precision": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                  }
-                                },
-                                "required": [
-                                  "seconds",
-                                  "precision"
-                                ],
-                                "additionalProperties": false
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "points": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 0
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ],
-                            "description": "Points in points race"
-                          },
-                          "remarks": {
-                            "type": "string"
-                          },
-                          "rr": {
-                            "type": "boolean",
-                            "description": "Reduced in rank"
-                          },
-                          "dsqSF": {
-                            "type": "boolean",
-                            "description": "Disqualified by sports fault"
-                          },
-                          "dsqTF": {
-                            "type": "boolean",
-                            "description": "Disqualified by technical fault"
-                          },
-                          "fs1": {
-                            "type": "boolean",
-                            "description": "1st false start"
-                          },
-                          "warning1": {
-                            "type": "boolean",
-                            "description": "1st warning"
-                          },
-                          "warning2": {
-                            "type": "boolean",
-                            "description": "2nd warning"
-                          },
-                          "dns": {
-                            "type": "boolean",
-                            "description": "Did not start"
-                          }
-                        },
-                        "required": [
-                          "raceIndex",
-                          "startPos",
-                          "rank",
-                          "time",
-                          "points",
-                          "remarks",
-                          "rr",
-                          "dsqSF",
-                          "dsqTF",
-                          "fs1",
-                          "warning1",
-                          "warning2",
-                          "dns"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "semifinals": {
-                        "type": "object",
-                        "properties": {
-                          "raceIndex": {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          "startPos": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "rank": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "time": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "seconds": {
-                                    "type": "number",
-                                    "minimum": 0
-                                  },
-                                  "precision": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                  }
-                                },
-                                "required": [
-                                  "seconds",
-                                  "precision"
-                                ],
-                                "additionalProperties": false
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "points": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 0
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ],
-                            "description": "Points in points race"
-                          },
-                          "remarks": {
-                            "type": "string"
-                          },
-                          "rr": {
-                            "type": "boolean",
-                            "description": "Reduced in rank"
-                          },
-                          "dsqSF": {
-                            "type": "boolean",
-                            "description": "Disqualified by sports fault"
-                          },
-                          "dsqTF": {
-                            "type": "boolean",
-                            "description": "Disqualified by technical fault"
-                          },
-                          "fs1": {
-                            "type": "boolean",
-                            "description": "1st false start"
-                          },
-                          "warning1": {
-                            "type": "boolean",
-                            "description": "1st warning"
-                          },
-                          "warning2": {
-                            "type": "boolean",
-                            "description": "2nd warning"
-                          },
-                          "dns": {
-                            "type": "boolean",
-                            "description": "Did not start"
-                          }
-                        },
-                        "required": [
-                          "raceIndex",
-                          "startPos",
-                          "rank",
-                          "time",
-                          "points",
-                          "remarks",
-                          "rr",
-                          "dsqSF",
-                          "dsqTF",
-                          "fs1",
-                          "warning1",
-                          "warning2",
-                          "dns"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "quarterfinals": {
-                        "type": "object",
-                        "properties": {
-                          "raceIndex": {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          "startPos": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "rank": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "time": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "seconds": {
-                                    "type": "number",
-                                    "minimum": 0
-                                  },
-                                  "precision": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                  }
-                                },
-                                "required": [
-                                  "seconds",
-                                  "precision"
-                                ],
-                                "additionalProperties": false
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "points": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 0
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ],
-                            "description": "Points in points race"
-                          },
-                          "remarks": {
-                            "type": "string"
-                          },
-                          "rr": {
-                            "type": "boolean",
-                            "description": "Reduced in rank"
-                          },
-                          "dsqSF": {
-                            "type": "boolean",
-                            "description": "Disqualified by sports fault"
-                          },
-                          "dsqTF": {
-                            "type": "boolean",
-                            "description": "Disqualified by technical fault"
-                          },
-                          "fs1": {
-                            "type": "boolean",
-                            "description": "1st false start"
-                          },
-                          "warning1": {
-                            "type": "boolean",
-                            "description": "1st warning"
-                          },
-                          "warning2": {
-                            "type": "boolean",
-                            "description": "2nd warning"
-                          },
-                          "dns": {
-                            "type": "boolean",
-                            "description": "Did not start"
-                          }
-                        },
-                        "required": [
-                          "raceIndex",
-                          "startPos",
-                          "rank",
-                          "time",
-                          "points",
-                          "remarks",
-                          "rr",
-                          "dsqSF",
-                          "dsqTF",
-                          "fs1",
-                          "warning1",
-                          "warning2",
-                          "dns"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "eighthfinals": {
-                        "type": "object",
-                        "properties": {
-                          "raceIndex": {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          "startPos": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "rank": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "time": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "seconds": {
-                                    "type": "number",
-                                    "minimum": 0
-                                  },
-                                  "precision": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                  }
-                                },
-                                "required": [
-                                  "seconds",
-                                  "precision"
-                                ],
-                                "additionalProperties": false
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "points": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 0
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ],
-                            "description": "Points in points race"
-                          },
-                          "remarks": {
-                            "type": "string"
-                          },
-                          "rr": {
-                            "type": "boolean",
-                            "description": "Reduced in rank"
-                          },
-                          "dsqSF": {
-                            "type": "boolean",
-                            "description": "Disqualified by sports fault"
-                          },
-                          "dsqTF": {
-                            "type": "boolean",
-                            "description": "Disqualified by technical fault"
-                          },
-                          "fs1": {
-                            "type": "boolean",
-                            "description": "1st false start"
-                          },
-                          "warning1": {
-                            "type": "boolean",
-                            "description": "1st warning"
-                          },
-                          "warning2": {
-                            "type": "boolean",
-                            "description": "2nd warning"
-                          },
-                          "dns": {
-                            "type": "boolean",
-                            "description": "Did not start"
-                          }
-                        },
-                        "required": [
-                          "raceIndex",
-                          "startPos",
-                          "rank",
-                          "time",
-                          "points",
-                          "remarks",
-                          "rr",
-                          "dsqSF",
-                          "dsqTF",
-                          "fs1",
-                          "warning1",
-                          "warning2",
-                          "dns"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "heats": {
-                        "type": "object",
-                        "properties": {
-                          "raceIndex": {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          "startPos": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "rank": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 1
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "time": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "seconds": {
-                                    "type": "number",
-                                    "minimum": 0
-                                  },
-                                  "precision": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                  }
-                                },
-                                "required": [
-                                  "seconds",
-                                  "precision"
-                                ],
-                                "additionalProperties": false
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "points": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "minimum": 0
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ],
-                            "description": "Points in points race"
-                          },
-                          "remarks": {
-                            "type": "string"
-                          },
-                          "rr": {
-                            "type": "boolean",
-                            "description": "Reduced in rank"
-                          },
-                          "dsqSF": {
-                            "type": "boolean",
-                            "description": "Disqualified by sports fault"
-                          },
-                          "dsqTF": {
-                            "type": "boolean",
-                            "description": "Disqualified by technical fault"
-                          },
-                          "fs1": {
-                            "type": "boolean",
-                            "description": "1st false start"
-                          },
-                          "warning1": {
-                            "type": "boolean",
-                            "description": "1st warning"
-                          },
-                          "warning2": {
-                            "type": "boolean",
-                            "description": "2nd warning"
-                          },
-                          "dns": {
-                            "type": "boolean",
-                            "description": "Did not start"
-                          }
-                        },
-                        "required": [
-                          "raceIndex",
-                          "startPos",
-                          "rank",
-                          "time",
-                          "points",
-                          "remarks",
-                          "rr",
-                          "dsqSF",
-                          "dsqTF",
-                          "fs1",
-                          "warning1",
-                          "warning2",
-                          "dns"
-                        ],
-                        "additionalProperties": false
-                      }
-                    },
-                    "required": [],
-                    "additionalProperties": false
-                  },
-                  "ranking": {
-                    "allOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "0": {
-                            "type": "object",
-                            "properties": {
-                              "rank": {
-                                "anyOf": [
-                                  {
-                                    "type": "integer",
-                                    "minimum": 1
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
-                              },
-                              "points": {
-                                "anyOf": [
-                                  {
-                                    "type": "integer",
-                                    "minimum": 0
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
-                              }
-                            },
-                            "required": [
-                              "rank",
-                              "points"
-                            ],
-                            "additionalProperties": false
-                          }
-                        },
-                        "required": [
-                          "0"
-                        ],
-                        "description": "Main evaluation"
-                      },
-                      {
-                        "type": "object",
-                        "additionalProperties": {
-                          "type": "object",
-                          "properties": {
-                            "rank": {
-                              "anyOf": [
-                                {
-                                  "type": "integer",
-                                  "minimum": 1
-                                },
-                                {
-                                  "type": "null"
-                                }
-                              ]
-                            },
-                            "points": {
-                              "anyOf": [
-                                {
-                                  "type": "integer",
-                                  "minimum": 0
-                                },
-                                {
-                                  "type": "null"
-                                }
-                              ]
-                            }
-                          },
-                          "required": [
-                            "rank",
-                            "points"
-                          ],
-                          "additionalProperties": false
-                        },
-                        "description": "Key is the evaluation ID"
-                      }
-                    ]
-                  }
-                },
-                "required": [
-                  "rounds",
-                  "ranking"
-                ],
-                "additionalProperties": false
-              },
-              "description": "Key is the competition ID"
-            }
-          },
-          "required": [
-            "overall",
-            "competitions"
-          ],
-          "additionalProperties": false
+          "$ref": "#/$defs/athleteResults"
         }
       },
       "required": [
@@ -1501,6 +421,16 @@
       "type": "string",
       "minLength": 1
     },
+    "timetableNumber": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
     "smallFinal": {
       "type": "object",
       "properties": {
@@ -1508,14 +438,7 @@
           "$ref": "#/$defs/roundStatus"
         },
         "timetableNumber": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/$defs/timetableNumber"
         },
         "label": {
           "$ref": "#/$defs/roundLabel"
@@ -1527,30 +450,15 @@
       ],
       "additionalProperties": false
     },
-    "qualifiers": {
-      "type": "object",
-      "properties": {
-        "byTime": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "byRank": {
-          "type": "integer",
-          "minimum": 0
-        }
-      },
-      "required": [
-        "byTime",
-        "byRank"
-      ],
-      "additionalProperties": false
+    "qualifiersCount": {
+      "type": "integer",
+      "minimum": 0
     },
     "qualifiersByRank": {
       "type": "object",
       "properties": {
         "byRank": {
-          "type": "integer",
-          "minimum": 0
+          "$ref": "#/$defs/qualifiersCount"
         }
       },
       "required": [
@@ -1558,48 +466,27 @@
       ],
       "additionalProperties": false
     },
-    "qualificationRound": {
+    "qualifiersByTime": {
       "type": "object",
       "properties": {
-        "status": {
-          "$ref": "#/$defs/roundStatus"
-        },
-        "timetableNumber": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "label": {
-          "$ref": "#/$defs/roundLabel"
-        },
-        "races": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "status": {
-                "$ref": "#/$defs/roundStatus"
-              }
-            },
-            "required": [
-              "status"
-            ],
-            "additionalProperties": false
-          },
-          "minItems": 1
+        "byTime": {
+          "$ref": "#/$defs/qualifiersCount"
         }
       },
       "required": [
-        "status",
-        "timetableNumber",
-        "races"
+        "byTime"
       ],
       "additionalProperties": false
+    },
+    "qualifiers": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/qualifiersByTime"
+        },
+        {
+          "$ref": "#/$defs/qualifiersByRank"
+        }
+      ]
     },
     "qualificationRace": {
       "type": "object",
@@ -1610,6 +497,33 @@
       },
       "required": [
         "status"
+      ],
+      "additionalProperties": false
+    },
+    "qualificationRound": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/roundStatus"
+        },
+        "timetableNumber": {
+          "$ref": "#/$defs/timetableNumber"
+        },
+        "label": {
+          "$ref": "#/$defs/roundLabel"
+        },
+        "races": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/qualificationRace"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "status",
+        "timetableNumber",
+        "races"
       ],
       "additionalProperties": false
     },
@@ -1653,14 +567,7 @@
                   "$ref": "#/$defs/roundStatus"
                 },
                 "timetableNumber": {
-                  "anyOf": [
-                    {
-                      "type": "integer"
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
+                  "$ref": "#/$defs/timetableNumber"
                 },
                 "label": {
                   "$ref": "#/$defs/roundLabel"
@@ -2030,6 +937,10 @@
       ],
       "additionalProperties": false
     },
+    "age": {
+      "type": "integer",
+      "description": "Age in years"
+    },
     "ageGroup": {
       "type": "object",
       "properties": {
@@ -2059,12 +970,10 @@
           "type": "array",
           "items": [
             {
-              "type": "integer",
-              "description": "Age in years"
+              "$ref": "#/$defs/age"
             },
             {
-              "type": "integer",
-              "description": "Age in years"
+              "$ref": "#/$defs/age"
             }
           ],
           "additionalItems": false,
