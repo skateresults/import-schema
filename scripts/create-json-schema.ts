@@ -6,6 +6,7 @@ import {
   qualificationRound,
   raceStatus,
   root,
+  roundLabel,
   roundStatus,
   smallFinal,
 } from "../src";
@@ -17,6 +18,7 @@ const jsonSchema = toJsonSchema(root, {
     athlete,
     raceStatus,
     roundStatus,
+    roundLabel,
     smallFinal,
     qualificationRound,
     qualificationRace,

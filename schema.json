@@ -1512,6 +1512,10 @@
         }
       ]
     },
+    "roundLabel": {
+      "type": "string",
+      "minLength": 1
+    },
     "smallFinal": {
       "type": "object",
       "properties": {
@@ -1531,6 +1535,9 @@
         "ascenders": {
           "type": "integer",
           "minimum": 0
+        },
+        "label": {
+          "$ref": "#/$defs/roundLabel"
         }
       },
       "required": [
@@ -1555,11 +1562,26 @@
               "type": "null"
             }
           ]
+        },
+        "label": {
+          "$ref": "#/$defs/roundLabel"
         }
       },
       "required": [
         "status",
         "timetableNumber"
+      ],
+      "additionalProperties": false
+    },
+    "qualificationRace": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/roundStatus"
+        }
+      },
+      "required": [
+        "status"
       ],
       "additionalProperties": false
     },
@@ -1603,6 +1625,9 @@
                       "type": "null"
                     }
                   ]
+                },
+                "label": {
+                  "$ref": "#/$defs/roundLabel"
                 }
               },
               "required": [
