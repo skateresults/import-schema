@@ -27,8 +27,13 @@ export const timetableNumber = nullable(pipe(number(), integer()));
 export const smallFinal = strictObject({
   status: raceStatus,
   timetableNumber,
-  ascenders: pipe(number(), minValue(0), integer()),
+  qualifiers: pipe(number(), minValue(0), integer()),
   label: optional(roundLabel),
+});
+
+export const qualificationQualifiers = strictObject({
+  byTime: pipe(number(), minValue(0), integer()),
+  byRank: pipe(number(), minValue(0), integer()),
 });
 
 export const qualificationRace = strictObject({
@@ -40,6 +45,7 @@ export const qualificationRound = strictObject({
   timetableNumber,
   label: optional(roundLabel),
   races: pipe(array(qualificationRace), nonEmpty()),
+  qualifiers: qualificationQualifiers,
 });
 
 export const competition = strictObject({

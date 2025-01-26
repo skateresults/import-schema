@@ -1532,7 +1532,7 @@
             }
           ]
         },
-        "ascenders": {
+        "qualifiers": {
           "type": "integer",
           "minimum": 0
         },
@@ -1543,7 +1543,25 @@
       "required": [
         "status",
         "timetableNumber",
-        "ascenders"
+        "qualifiers"
+      ],
+      "additionalProperties": false
+    },
+    "qualificationAscenders": {
+      "type": "object",
+      "properties": {
+        "byTime": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byRank": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "byTime",
+        "byRank"
       ],
       "additionalProperties": false
     },
@@ -1581,12 +1599,16 @@
             "additionalProperties": false
           },
           "minItems": 1
+        },
+        "qualifiers": {
+          "$ref": "#/$defs/qualificationAscenders"
         }
       },
       "required": [
         "status",
         "timetableNumber",
-        "races"
+        "races",
+        "qualifiers"
       ],
       "additionalProperties": false
     },
