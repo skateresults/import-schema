@@ -12,7 +12,8 @@ import {
   string,
   tupleWithRest,
 } from "valibot";
-import { athleteResults } from "./athleteResults.js";
+import { competitionResults } from "./competitionResults.js";
+import { overallResults } from "./overallResults.js";
 
 export const athlete = strictObject({
   id: pipe(string(), nonEmpty()),
@@ -29,5 +30,8 @@ export const athlete = strictObject({
     description("Evaluations the athlete is ranked in")
   ),
 
-  results: athleteResults,
+  results: strictObject({
+    overall: overallResults,
+    competition: competitionResults,
+  }),
 });

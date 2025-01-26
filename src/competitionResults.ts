@@ -14,9 +14,16 @@ import {
   string,
 } from "valibot";
 
-export const ranking = strictObject({
+export const competitionRanking = strictObject({
   rank: nullable(pipe(number(), minValue(1), integer())),
-  points: nullable(pipe(number(), minValue(0), integer())),
+  points: nullable(
+    pipe(
+      number(),
+      minValue(0),
+      integer(),
+      description("Points for overall ranking")
+    )
+  ),
 });
 
 export const time = strictObject({
@@ -61,19 +68,15 @@ export const competitionResult = strictObject({
   }),
 
   ranking: intersect([
-    pipe(object({ "0": ranking }), description("Main evaluation")),
-    pipe(record(string(), ranking), description("Key is the evaluation ID")),
+    pipe(object({ "0": competitionRanking }), description("Main evaluation")),
+    pipe(
+      record(string(), competitionRanking),
+      description("Key is the evaluation ID")
+    ),
   ]),
 });
 
-export const athleteResults = strictObject({
-  overall: intersect([
-    pipe(object({ "0": ranking }), description("Main evaluation")),
-    pipe(record(string(), ranking), description("Key is the evaluation ID")),
-  ]),
-
-  competitions: pipe(
-    record(string(), competitionResult),
-    description("Key is the competition ID")
-  ),
-});
+export const competitionResults = pipe(
+  record(string(), competitionResult),
+  description("Key is the competition ID")
+);

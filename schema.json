@@ -40,7 +40,7 @@
   ],
   "additionalProperties": false,
   "$defs": {
-    "ranking": {
+    "competitionRanking": {
       "type": "object",
       "properties": {
         "rank": {
@@ -58,7 +58,8 @@
           "anyOf": [
             {
               "type": "integer",
-              "minimum": 0
+              "minimum": 0,
+              "description": "Points for overall ranking"
             },
             {
               "type": "null"
@@ -236,7 +237,7 @@
               "type": "object",
               "properties": {
                 "0": {
-                  "$ref": "#/$defs/ranking"
+                  "$ref": "#/$defs/competitionRanking"
                 }
               },
               "required": [
@@ -247,7 +248,7 @@
             {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/$defs/ranking"
+                "$ref": "#/$defs/competitionRanking"
               },
               "description": "Key is the evaluation ID"
             }
@@ -260,45 +261,68 @@
       ],
       "additionalProperties": false
     },
-    "athleteResults": {
+    "competitionResults": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/competitionResult"
+      },
+      "description": "Key is the competition ID"
+    },
+    "overallRanking": {
       "type": "object",
       "properties": {
-        "overall": {
-          "allOf": [
+        "rank": {
+          "anyOf": [
             {
-              "type": "object",
-              "properties": {
-                "0": {
-                  "$ref": "#/$defs/ranking"
-                }
-              },
-              "required": [
-                "0"
-              ],
-              "description": "Main evaluation"
+              "type": "integer",
+              "minimum": 1
             },
             {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/$defs/ranking"
-              },
-              "description": "Key is the evaluation ID"
+              "type": "null"
             }
           ]
         },
-        "competitions": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/$defs/competitionResult"
-          },
-          "description": "Key is the competition ID"
+        "points": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Sum of all competition points"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
-        "overall",
-        "competitions"
+        "rank",
+        "points"
       ],
       "additionalProperties": false
+    },
+    "overallResults": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "0": {
+              "$ref": "#/$defs/overallRanking"
+            }
+          },
+          "required": [
+            "0"
+          ],
+          "description": "Main evaluation"
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/overallRanking"
+          },
+          "description": "Key is the evaluation ID"
+        }
+      ]
     },
     "athlete": {
       "type": "object",
@@ -375,7 +399,20 @@
           "description": "Evaluations the athlete is ranked in"
         },
         "results": {
-          "$ref": "#/$defs/athleteResults"
+          "type": "object",
+          "properties": {
+            "overall": {
+              "$ref": "#/$defs/overallResults"
+            },
+            "competition": {
+              "$ref": "#/$defs/competitionResults"
+            }
+          },
+          "required": [
+            "overall",
+            "competition"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [

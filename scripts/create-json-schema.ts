@@ -16,24 +16,28 @@ import {
   qualifiersCount,
   qualifiersByTime,
   timetableNumber,
-  ranking,
   time,
   raceResult,
   competitionResult,
-  athleteResults,
+  competitionRanking,
+  competitionResults,
+  overallResults,
+  overallRanking,
 } from "../src";
 import { toJsonSchema } from "@valibot/to-json-schema";
 import { writeFile } from "node:fs/promises";
 
 const jsonSchema = toJsonSchema(root, {
   definitions: {
-    // athleteResult.ts
-    ranking,
+    // competitionResults.ts
+    competitionRanking,
     time,
     raceResult,
     competitionResult,
-    athleteResults,
-
+    competitionResults,
+    // overallResults.ts
+    overallRanking,
+    overallResults,
     // athlete.ts
     athlete,
     // competition.ts

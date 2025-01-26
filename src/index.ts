@@ -13,7 +13,8 @@ import { ageGroup } from "./ageGroup.js";
 import { evaluation } from "./evaluation.js";
 
 export * from "./athlete.js";
-export * from "./athleteResults.js";
+export * from "./competitionResults.js";
+export * from "./overallResults.js";
 export * from "./ageGroup.js";
 export * from "./competition.js";
 export * from "./evaluation.js";
