@@ -1631,6 +1631,9 @@
           ],
           "description": "Distance in meters"
         },
+        "done": {
+          "type": "boolean"
+        },
         "priority": {
           "type": "integer",
           "minimum": 1,
@@ -1703,6 +1706,7 @@
         "id",
         "name",
         "distance",
+        "done",
         "rounds"
       ],
       "additionalProperties": false

@@ -1,5 +1,6 @@
 import {
   array,
+  boolean,
   description,
   integer,
   literal,
@@ -52,6 +53,7 @@ export const competition = strictObject({
   id: pipe(string(), nonEmpty()),
   name: pipe(string(), nonEmpty()),
   distance: pipe(nullable(number()), description("Distance in meters")),
+  done: boolean(),
   priority: optional(
     pipe(
       number(),
