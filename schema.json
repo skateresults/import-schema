@@ -25,7 +25,22 @@
     "evaluations": {
       "type": "array",
       "items": {
-        "$ref": "#/$defs/evaluation"
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "additionalProperties": false
       },
       "minItems": 1,
       "description": "One evaluation must have id \"0\""
@@ -1759,24 +1774,6 @@
         "name",
         "gender",
         "competitions"
-      ],
-      "additionalProperties": false
-    },
-    "evaluation": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "minLength": 1
-        },
-        "name": {
-          "type": "string",
-          "minLength": 1
-        }
-      },
-      "required": [
-        "id",
-        "name"
       ],
       "additionalProperties": false
     }

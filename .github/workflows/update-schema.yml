@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
       - uses: ./.github/actions/build
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
