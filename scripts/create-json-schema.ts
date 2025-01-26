@@ -19,6 +19,7 @@ import {
   root,
   round,
   roundId,
+  roundLabel,
   roundStatus,
   time,
   timetableNumber,
@@ -40,6 +41,7 @@ const jsonSchema = toJsonSchema(root, {
     // round.ts
     raceStatus,
     roundStatus,
+    roundLabel,
     timetableNumber,
     qualificationCount,
     race,

@@ -454,6 +454,10 @@
         }
       ]
     },
+    "roundLabel": {
+      "type": "string",
+      "minLength": 1
+    },
     "timetableNumber": {
       "anyOf": [
         {
@@ -526,31 +530,16 @@
         "timetableNumber": {
           "$ref": "#/$defs/timetableNumber"
         },
-        "customLabel": {
+        "label": {
           "anyOf": [
             {
-              "type": "string",
-              "minLength": 1
+              "$ref": "#/$defs/roundLabel"
             },
             {
               "type": "null"
             }
           ],
-          "default": null,
-          "description": "Custom round label instead of the default one"
-        },
-        "customRaceLabelPrefix": {
-          "anyOf": [
-            {
-              "type": "string",
-              "minLength": 1
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Custom race label prefix instead of the default one. Without trailing space."
+          "default": null
         },
         "races": {
           "type": "array",
