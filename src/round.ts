@@ -12,6 +12,7 @@ import {
   pipe,
   strictObject,
   string,
+  trim,
   union,
 } from "valibot";
 
@@ -21,7 +22,6 @@ export const raceStatus = union([
   literal("done"),
 ]);
 export const roundStatus = raceStatus;
-export const roundLabel = pipe(string(), nonEmpty());
 
 export const timetableNumber = optional(
   nullable(pipe(number(), integer())),
@@ -60,7 +60,16 @@ export const round = strictObject({
 
   status: roundStatus,
   timetableNumber,
-  label: optional(nullable(roundLabel), null),
+
+  customLabel: pipe(
+    optional(nullable(pipe(string(), nonEmpty())), null),
+    description("Custom round label instead of the default one")
+  ),
+  customRaceLabelPrefix: pipe(
+    optional(nullable(pipe(string(), nonEmpty())), null),
+    description("Custom race label prefix instead of the default one. Without trailing space.")
+  ),
+
   races: pipe(array(race), nonEmpty()),
   qualificationRules: pipe(
     array(qualificationRule),
