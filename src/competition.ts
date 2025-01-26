@@ -1,4 +1,5 @@
 import {
+  array,
   description,
   integer,
   literal,
@@ -30,14 +31,15 @@ export const smallFinal = strictObject({
   label: optional(roundLabel),
 });
 
+export const qualificationRace = strictObject({
+  status: raceStatus,
+});
+
 export const qualificationRound = strictObject({
   status: roundStatus,
   timetableNumber,
   label: optional(roundLabel),
-});
-
-export const qualificationRace = strictObject({
-  status: raceStatus,
+  races: pipe(array(qualificationRace), nonEmpty()),
 });
 
 export const competition = strictObject({

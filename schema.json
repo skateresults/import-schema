@@ -1565,11 +1565,28 @@
         },
         "label": {
           "$ref": "#/$defs/roundLabel"
+        },
+        "races": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "$ref": "#/$defs/roundStatus"
+              }
+            },
+            "required": [
+              "status"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
         }
       },
       "required": [
         "status",
-        "timetableNumber"
+        "timetableNumber",
+        "races"
       ],
       "additionalProperties": false
     },
