@@ -18,6 +18,7 @@ export const raceStatus = union([
   literal("seeded"),
   literal("done"),
 ]);
+export const roundStatus = raceStatus;
 
 export const timetableNumber = nullable(pipe(number(), integer()));
 
@@ -28,7 +29,7 @@ export const smallFinal = strictObject({
 });
 
 export const qualificationRound = strictObject({
-  status: raceStatus,
+  status: roundStatus,
   timetableNumber,
 });
 

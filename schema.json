@@ -1499,11 +1499,24 @@
         }
       ]
     },
+    "roundStatus": {
+      "anyOf": [
+        {
+          "const": "open"
+        },
+        {
+          "const": "seeded"
+        },
+        {
+          "const": "done"
+        }
+      ]
+    },
     "smallFinal": {
       "type": "object",
       "properties": {
         "status": {
-          "$ref": "#/$defs/raceStatus"
+          "$ref": "#/$defs/roundStatus"
         },
         "timetableNumber": {
           "anyOf": [
@@ -1531,7 +1544,7 @@
       "type": "object",
       "properties": {
         "status": {
-          "$ref": "#/$defs/raceStatus"
+          "$ref": "#/$defs/roundStatus"
         },
         "timetableNumber": {
           "anyOf": [
@@ -1579,7 +1592,7 @@
               "type": "object",
               "properties": {
                 "status": {
-                  "$ref": "#/$defs/raceStatus"
+                  "$ref": "#/$defs/roundStatus"
                 },
                 "timetableNumber": {
                   "anyOf": [

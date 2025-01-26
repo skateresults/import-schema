@@ -5,6 +5,7 @@ import {
   qualificationRound,
   raceStatus,
   root,
+  roundStatus,
   smallFinal,
 } from "../src";
 import { toJsonSchema } from "@valibot/to-json-schema";
@@ -14,6 +15,7 @@ const jsonSchema = toJsonSchema(root, {
   definitions: {
     athlete,
     raceStatus,
+    roundStatus,
     smallFinal,
     qualificationRound,
     competition,
