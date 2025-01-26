@@ -1547,7 +1547,7 @@
       ],
       "additionalProperties": false
     },
-    "qualificationAscenders": {
+    "qualificationQualifiers": {
       "type": "object",
       "properties": {
         "byTime": {
@@ -1601,7 +1601,7 @@
           "minItems": 1
         },
         "qualifiers": {
-          "$ref": "#/$defs/qualificationAscenders"
+          "$ref": "#/$defs/qualificationQualifiers"
         }
       },
       "required": [
