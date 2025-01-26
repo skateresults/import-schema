@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/skateresults/import-schema/compare/v0.3.1...v0.4.0) (2025-01-26)
+
+
+### Features
+
+* remove round label ([f6416a7](https://github.com/skateresults/import-schema/commit/f6416a705430e57c8e039c17db236a2dbfe9ff94))
+* rename and tweak race/round labels ([062e267](https://github.com/skateresults/import-schema/commit/062e2670372324264d31667bdb4539c6741ecbca))
+
 ## [0.3.1](https://github.com/skateresults/import-schema/compare/v0.3.0...v0.3.1) (2025-01-26)
 
 
