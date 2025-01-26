@@ -46,6 +46,16 @@ export const competition = strictObject({
   id: pipe(string(), nonEmpty()),
   name: pipe(string(), nonEmpty()),
   distance: pipe(nullable(number()), description("Distance in meters")),
+  priority: optional(
+    pipe(
+      number(),
+      minValue(1),
+      integer(),
+      description(
+        "Priority of competitions in case of a tie in points; currently not used"
+      )
+    )
+  ),
   rounds: strictObject({
     "final-a": strictObject({
       status: raceStatus,

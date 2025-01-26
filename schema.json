@@ -1624,6 +1624,11 @@
           ],
           "description": "Distance in meters"
         },
+        "priority": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Priority of competitions in case of a tie in points; currently not used"
+        },
         "rounds": {
           "type": "object",
           "properties": {
