@@ -10,6 +10,7 @@ import {
   roundLabel,
   roundStatus,
   smallFinal,
+  evaluation,
 } from "../src";
 import { toJsonSchema } from "@valibot/to-json-schema";
 import { writeFile } from "node:fs/promises";
@@ -26,6 +27,7 @@ const jsonSchema = toJsonSchema(root, {
     qualificationRace,
     competition,
     ageGroup,
+    evaluation,
   },
 });
 
