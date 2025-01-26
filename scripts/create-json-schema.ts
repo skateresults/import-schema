@@ -2,7 +2,7 @@ import {
   ageGroup,
   athlete,
   competition,
-  qualificationQualifiers,
+  qualifiers,
   qualificationRace,
   qualificationRound,
   raceStatus,
@@ -11,6 +11,7 @@ import {
   roundStatus,
   smallFinal,
   evaluation,
+  qualifiersByRank,
 } from "../src";
 import { toJsonSchema } from "@valibot/to-json-schema";
 import { writeFile } from "node:fs/promises";
@@ -22,7 +23,8 @@ const jsonSchema = toJsonSchema(root, {
     roundStatus,
     roundLabel,
     smallFinal,
-    qualificationQualifiers,
+    qualifiers,
+    qualifiersByRank,
     qualificationRound,
     qualificationRace,
     competition,

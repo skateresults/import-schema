@@ -3,6 +3,7 @@ import {
   boolean,
   description,
   integer,
+  intersect,
   literal,
   minValue,
   nonEmpty,
@@ -28,12 +29,15 @@ export const timetableNumber = nullable(pipe(number(), integer()));
 export const smallFinal = strictObject({
   status: raceStatus,
   timetableNumber,
-  qualifiers: pipe(number(), minValue(0), integer()),
   label: optional(roundLabel),
 });
 
-export const qualificationQualifiers = strictObject({
+export const qualifiers = strictObject({
   byTime: pipe(number(), minValue(0), integer()),
+  byRank: pipe(number(), minValue(0), integer()),
+});
+
+export const qualifiersByRank = strictObject({
   byRank: pipe(number(), minValue(0), integer()),
 });
 
@@ -46,8 +50,21 @@ export const qualificationRound = strictObject({
   timetableNumber,
   label: optional(roundLabel),
   races: pipe(array(qualificationRace), nonEmpty()),
-  qualifiers: qualificationQualifiers,
 });
+
+function createSmallFinalQualifiers<T extends string>(rounds: T[]) {
+  return strictObject(
+    Object.fromEntries(
+      rounds.map((round) => [round, optional(qualifiersByRank)])
+    )
+  );
+}
+
+function createQualificationQualifiers<T extends string>(rounds: T[]) {
+  return strictObject(
+    Object.fromEntries(rounds.map((round) => [round, optional(qualifiers)]))
+  );
+}
 
 export const competition = strictObject({
   id: pipe(string(), nonEmpty()),
@@ -70,14 +87,126 @@ export const competition = strictObject({
       timetableNumber,
       label: optional(roundLabel),
     }),
-    "final-b": optional(smallFinal),
-    "final-c": optional(smallFinal),
-    "final-d": optional(smallFinal),
-    "final-e": optional(smallFinal),
-    "final-f": optional(smallFinal),
-    semifinals: optional(qualificationRound),
-    quarterfinals: optional(qualificationRound),
-    eighthfinals: optional(qualificationRound),
-    heats: optional(qualificationRound),
+    "final-b": optional(
+      intersect([
+        smallFinal,
+        strictObject({
+          qualifiers: createSmallFinalQualifiers(["final-a"]),
+        }),
+      ])
+    ),
+    "final-c": optional(
+      intersect([
+        smallFinal,
+        strictObject({
+          qualifiers: createSmallFinalQualifiers(["final-a", "final-b"]),
+        }),
+      ])
+    ),
+    "final-d": optional(
+      intersect([
+        smallFinal,
+        strictObject({
+          qualifiers: createSmallFinalQualifiers([
+            "final-a",
+            "final-b",
+            "final-c",
+          ]),
+        }),
+      ])
+    ),
+    "final-e": optional(
+      intersect([
+        smallFinal,
+        strictObject({
+          qualifiers: createSmallFinalQualifiers([
+            "final-a",
+            "final-b",
+            "final-c",
+            "final-d",
+          ]),
+        }),
+      ])
+    ),
+    "final-f": optional(
+      intersect([
+        smallFinal,
+        strictObject({
+          qualifiers: createSmallFinalQualifiers([
+            "final-a",
+            "final-b",
+            "final-c",
+            "final-d",
+            "final-e",
+          ]),
+        }),
+      ])
+    ),
+    semifinals: optional(
+      intersect([
+        qualificationRound,
+        strictObject({
+          qualifiers: createQualificationQualifiers([
+            "final-a",
+            "final-b",
+            "final-c",
+            "final-d",
+            "final-e",
+            "final-f",
+          ]),
+        }),
+      ])
+    ),
+    quarterfinals: optional(
+      intersect([
+        qualificationRound,
+        strictObject({
+          qualifiers: createQualificationQualifiers([
+            "final-a",
+            "final-b",
+            "final-c",
+            "final-d",
+            "final-e",
+            "final-f",
+            "semifinals",
+          ]),
+        }),
+      ])
+    ),
+    eighthfinals: optional(
+      intersect([
+        qualificationRound,
+        strictObject({
+          qualifiers: createQualificationQualifiers([
+            "final-a",
+            "final-b",
+            "final-c",
+            "final-d",
+            "final-e",
+            "final-f",
+            "semifinals",
+            "quarterfinals",
+          ]),
+        }),
+      ])
+    ),
+    heats: optional(
+      intersect([
+        qualificationRound,
+        strictObject({
+          qualifiers: createQualificationQualifiers([
+            "final-a",
+            "final-b",
+            "final-c",
+            "final-d",
+            "final-e",
+            "final-f",
+            "semifinals",
+            "quarterfinals",
+            "eighthfinals",
+          ]),
+        }),
+      ])
+    ),
   }),
 });

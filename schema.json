@@ -1517,22 +1517,17 @@
             }
           ]
         },
-        "qualifiers": {
-          "type": "integer",
-          "minimum": 0
-        },
         "label": {
           "$ref": "#/$defs/roundLabel"
         }
       },
       "required": [
         "status",
-        "timetableNumber",
-        "qualifiers"
+        "timetableNumber"
       ],
       "additionalProperties": false
     },
-    "qualificationQualifiers": {
+    "qualifiers": {
       "type": "object",
       "properties": {
         "byTime": {
@@ -1546,6 +1541,19 @@
       },
       "required": [
         "byTime",
+        "byRank"
+      ],
+      "additionalProperties": false
+    },
+    "qualifiersByRank": {
+      "type": "object",
+      "properties": {
+        "byRank": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
         "byRank"
       ],
       "additionalProperties": false
@@ -1584,16 +1592,12 @@
             "additionalProperties": false
           },
           "minItems": 1
-        },
-        "qualifiers": {
-          "$ref": "#/$defs/qualificationQualifiers"
         }
       },
       "required": [
         "status",
         "timetableNumber",
-        "races",
-        "qualifiers"
+        "races"
       ],
       "additionalProperties": false
     },
@@ -1669,31 +1673,346 @@
               "additionalProperties": false
             },
             "final-b": {
-              "$ref": "#/$defs/smallFinal"
+              "allOf": [
+                {
+                  "$ref": "#/$defs/smallFinal"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "qualifiers": {
+                      "type": "object",
+                      "properties": {
+                        "final-a": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "qualifiers"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
             },
             "final-c": {
-              "$ref": "#/$defs/smallFinal"
+              "allOf": [
+                {
+                  "$ref": "#/$defs/smallFinal"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "qualifiers": {
+                      "type": "object",
+                      "properties": {
+                        "final-a": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        },
+                        "final-b": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "qualifiers"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
             },
             "final-d": {
-              "$ref": "#/$defs/smallFinal"
+              "allOf": [
+                {
+                  "$ref": "#/$defs/smallFinal"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "qualifiers": {
+                      "type": "object",
+                      "properties": {
+                        "final-a": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        },
+                        "final-b": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        },
+                        "final-c": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "qualifiers"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
             },
             "final-e": {
-              "$ref": "#/$defs/smallFinal"
+              "allOf": [
+                {
+                  "$ref": "#/$defs/smallFinal"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "qualifiers": {
+                      "type": "object",
+                      "properties": {
+                        "final-a": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        },
+                        "final-b": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        },
+                        "final-c": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        },
+                        "final-d": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "qualifiers"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
             },
             "final-f": {
-              "$ref": "#/$defs/smallFinal"
+              "allOf": [
+                {
+                  "$ref": "#/$defs/smallFinal"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "qualifiers": {
+                      "type": "object",
+                      "properties": {
+                        "final-a": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        },
+                        "final-b": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        },
+                        "final-c": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        },
+                        "final-d": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        },
+                        "final-e": {
+                          "$ref": "#/$defs/qualifiersByRank"
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "qualifiers"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
             },
             "semifinals": {
-              "$ref": "#/$defs/qualificationRound"
+              "allOf": [
+                {
+                  "$ref": "#/$defs/qualificationRound"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "qualifiers": {
+                      "type": "object",
+                      "properties": {
+                        "final-a": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-b": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-c": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-d": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-e": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-f": {
+                          "$ref": "#/$defs/qualifiers"
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "qualifiers"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
             },
             "quarterfinals": {
-              "$ref": "#/$defs/qualificationRound"
+              "allOf": [
+                {
+                  "$ref": "#/$defs/qualificationRound"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "qualifiers": {
+                      "type": "object",
+                      "properties": {
+                        "final-a": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-b": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-c": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-d": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-e": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-f": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "semifinals": {
+                          "$ref": "#/$defs/qualifiers"
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "qualifiers"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
             },
             "eighthfinals": {
-              "$ref": "#/$defs/qualificationRound"
+              "allOf": [
+                {
+                  "$ref": "#/$defs/qualificationRound"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "qualifiers": {
+                      "type": "object",
+                      "properties": {
+                        "final-a": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-b": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-c": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-d": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-e": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-f": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "semifinals": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "quarterfinals": {
+                          "$ref": "#/$defs/qualifiers"
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "qualifiers"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
             },
             "heats": {
-              "$ref": "#/$defs/qualificationRound"
+              "allOf": [
+                {
+                  "$ref": "#/$defs/qualificationRound"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "qualifiers": {
+                      "type": "object",
+                      "properties": {
+                        "final-a": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-b": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-c": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-d": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-e": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "final-f": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "semifinals": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "quarterfinals": {
+                          "$ref": "#/$defs/qualifiers"
+                        },
+                        "eighthfinals": {
+                          "$ref": "#/$defs/qualifiers"
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "qualifiers"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
             }
           },
           "required": [
