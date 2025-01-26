@@ -466,11 +466,13 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "default": null
     },
     "qualificationCount": {
       "type": "integer",
-      "minimum": 0
+      "minimum": 0,
+      "default": 0
     },
     "race": {
       "type": "object",
@@ -512,9 +514,7 @@
         }
       },
       "required": [
-        "round",
-        "byTime",
-        "byRank"
+        "round"
       ],
       "additionalProperties": false
     },
@@ -531,7 +531,15 @@
           "$ref": "#/$defs/timetableNumber"
         },
         "label": {
-          "$ref": "#/$defs/roundLabel"
+          "anyOf": [
+            {
+              "$ref": "#/$defs/roundLabel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "races": {
           "type": "array",
@@ -551,7 +559,6 @@
       "required": [
         "id",
         "status",
-        "timetableNumber",
         "races",
         "qualificationRules"
       ],
@@ -577,6 +584,7 @@
               "type": "null"
             }
           ],
+          "default": null,
           "description": "Distance in meters"
         },
         "done": {
@@ -598,7 +606,6 @@
       "required": [
         "id",
         "name",
-        "distance",
         "done",
         "rounds"
       ],
@@ -634,16 +641,24 @@
           ]
         },
         "ageRange": {
-          "type": "array",
-          "items": [
+          "anyOf": [
             {
-              "$ref": "#/$defs/age"
+              "type": "array",
+              "items": [
+                {
+                  "$ref": "#/$defs/age"
+                },
+                {
+                  "$ref": "#/$defs/age"
+                }
+              ],
+              "additionalItems": false
             },
             {
-              "$ref": "#/$defs/age"
+              "type": "null"
             }
           ],
-          "additionalItems": false,
+          "default": null,
           "description": "Minimum and maximum age"
         },
         "competitions": {

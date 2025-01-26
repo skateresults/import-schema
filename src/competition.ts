@@ -17,7 +17,10 @@ import { round } from "./round.js";
 export const competition = strictObject({
   id: pipe(string(), nonEmpty()),
   name: pipe(string(), nonEmpty()),
-  distance: pipe(nullable(number()), description("Distance in meters")),
+  distance: pipe(
+    optional(nullable(number()), null),
+    description("Distance in meters")
+  ),
   done: boolean(),
   priority: optional(
     pipe(

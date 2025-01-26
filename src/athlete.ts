@@ -7,6 +7,7 @@ import {
   nonEmpty,
   nullable,
   number,
+  optional,
   pipe,
   strictObject,
   string,

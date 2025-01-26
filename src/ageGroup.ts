@@ -4,6 +4,7 @@ import {
   integer,
   literal,
   nonEmpty,
+  nullable,
   number,
   optional,
   pipe,
@@ -22,7 +23,7 @@ export const ageGroup = strictObject({
   gender: union([literal("female"), literal("male"), literal("mixed")]),
 
   ageRange: pipe(
-    optional(tuple([age, age])),
+    optional(nullable(tuple([age, age])), null),
     description("Minimum and maximum age")
   ),
 
