@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/skateresults/import-schema/compare/v0.3.0...v0.3.1) (2025-01-26)
+
+
+### Bug Fixes
+
+* typo of key athlete.results.competition ([0c52623](https://github.com/skateresults/import-schema/commit/0c526231fe71e43aedb3f7401fbfd98d9ce6e6f9))
+
 ## [0.3.0](https://github.com/skateresults/import-schema/compare/v0.2.0...v0.3.0) (2025-01-26)
 
 
