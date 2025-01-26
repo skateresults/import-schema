@@ -454,10 +454,6 @@
         }
       ]
     },
-    "roundLabel": {
-      "type": "string",
-      "minLength": 1
-    },
     "timetableNumber": {
       "anyOf": [
         {
@@ -529,17 +525,6 @@
         },
         "timetableNumber": {
           "$ref": "#/$defs/timetableNumber"
-        },
-        "label": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/roundLabel"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
         },
         "races": {
           "type": "array",
