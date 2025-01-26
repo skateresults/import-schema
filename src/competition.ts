@@ -33,6 +33,10 @@ export const qualificationRound = strictObject({
   timetableNumber,
 });
 
+export const qualificationRace = strictObject({
+  status: raceStatus,
+});
+
 export const competition = strictObject({
   id: pipe(string(), nonEmpty()),
   name: pipe(string(), nonEmpty()),
