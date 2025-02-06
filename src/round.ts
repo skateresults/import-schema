@@ -59,6 +59,18 @@ export const round = strictObject({
 
   status: roundStatus,
   timetableNumber,
+
+  label: pipe(
+    optional(nullable(pipe(string(), nonEmpty())), null),
+    description("Custom round label instead of the default one")
+  ),
+  raceLabelPrefix: pipe(
+    optional(nullable(pipe(string(), nonEmpty())), null),
+    description(
+      "Custom race label prefix instead of the default one. Without trailing space."
+    )
+  ),
+
   races: pipe(array(race), nonEmpty()),
   qualificationRules: pipe(
     array(qualificationRule),
