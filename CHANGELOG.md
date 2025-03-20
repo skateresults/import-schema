@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.0](https://github.com/skateresults/import-schema/compare/v0.4.0...v0.5.0) (2025-03-20)
+
+
+### Features
+
+* add custom round label & custom race label prefix ([5d4959d](https://github.com/skateresults/import-schema/commit/5d4959da577c07c81fd0b8d0c2302f34a5463447))
+* upgrade valibot to v1 ([a4f09ef](https://github.com/skateresults/import-schema/commit/a4f09efddc5d71462ed1fb3c000fb3419e315dd8))
+
 ## [0.4.0](https://github.com/skateresults/import-schema/compare/v0.3.1...v0.4.0) (2025-01-26)
 
 
