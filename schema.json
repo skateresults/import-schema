@@ -392,6 +392,7 @@
               "const": "0"
             }
           ],
+          "minItems": 1,
           "additionalItems": {
             "type": "string",
             "minLength": 1
@@ -663,7 +664,7 @@
                   "$ref": "#/$defs/age"
                 }
               ],
-              "additionalItems": false
+              "minItems": 2
             },
             {
               "type": "null"

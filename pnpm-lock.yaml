@@ -19,8 +19,8 @@ importers:
         specifier: 22.13.10
         version: 22.13.10
       '@valibot/to-json-schema':
-        specifier: 1.0.0
-        version: 1.0.0(valibot@1.0.0(typescript@5.8.2))
+        specifier: 1.2.0
+        version: 1.2.0(valibot@1.0.0(typescript@5.8.2))
       tsx:
         specifier: 4.19.3
         version: 4.19.3
@@ -186,10 +186,10 @@ packages:
   '@types/node@22.13.10':
     resolution: {integrity: sha512-I6LPUvlRH+O6VRUqYOcMudhaIdUVWfsjnZavnsraHvpBwaEyMN29ry+0UVJhImYL16xsscu0aske3yA+uPOWfw==}
 
-  '@valibot/to-json-schema@1.0.0':
-    resolution: {integrity: sha512-/9crJgPptVsGCL6X+JPDQyaJwkalSZ/52WuF8DiRUxJgcmpNdzYRfZ+gqMEP8W3CTVfuMWPqqvIgfwJ97f9Etw==}
+  '@valibot/to-json-schema@1.2.0':
+    resolution: {integrity: sha512-vNPg/esuEAUFaJoyNdnKLEIIRL0LndRyFD3eJR2itwLGr3hH3X8q17Yo84dkyDfZBR8WetHto/5K2OYlyQUUYQ==}
     peerDependencies:
-      valibot: ^1.0.0
+      valibot: ^1.1.0
 
   esbuild@0.25.1:
     resolution: {integrity: sha512-BGO5LtrGC7vxnqucAe/rmvKdJllfGaYWdyABvyMoXQlfYMb2bbRuReWR5tEGE//4LcNJj9XrkovTqNYRFZHAMQ==}
@@ -311,7 +311,7 @@ snapshots:
     dependencies:
       undici-types: 6.20.0
 
-  '@valibot/to-json-schema@1.0.0(valibot@1.0.0(typescript@5.8.2))':
+  '@valibot/to-json-schema@1.2.0(valibot@1.0.0(typescript@5.8.2))':
     dependencies:
       valibot: 1.0.0(typescript@5.8.2)
 
