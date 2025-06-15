@@ -215,6 +215,18 @@
             "final-f": {
               "$ref": "#/$defs/raceResult"
             },
+            "final-g": {
+              "$ref": "#/$defs/raceResult"
+            },
+            "final-h": {
+              "$ref": "#/$defs/raceResult"
+            },
+            "final-i": {
+              "$ref": "#/$defs/raceResult"
+            },
+            "final-j": {
+              "$ref": "#/$defs/raceResult"
+            },
             "semifinals": {
               "$ref": "#/$defs/raceResult"
             },
@@ -491,6 +503,10 @@
         "final-d",
         "final-e",
         "final-f",
+        "final-g",
+        "final-h",
+        "final-i",
+        "final-j",
         "semifinals",
         "quarterfinals",
         "eighthfinals",
