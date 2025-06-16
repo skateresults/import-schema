@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/skateresults/import-schema/compare/v0.5.0...v0.6.0) (2025-06-15)
+
+
+### Features
+
+* add finals G to J ([50a7a4d](https://github.com/skateresults/import-schema/commit/50a7a4d9b176527fb460db6081b9fedf2ee6e80e))
+
 ## [0.5.0](https://github.com/skateresults/import-schema/compare/v0.4.0...v0.5.0) (2025-03-20)
 
 
