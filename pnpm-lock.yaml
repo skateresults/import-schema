@@ -13,8 +13,8 @@ importers:
         version: 1.0.0(typescript@5.8.2)
     devDependencies:
       '@tsconfig/recommended':
-        specifier: 1.0.8
-        version: 1.0.8
+        specifier: 1.0.10
+        version: 1.0.10
       '@types/node':
         specifier: 22.13.10
         version: 22.13.10
@@ -180,8 +180,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@tsconfig/recommended@1.0.8':
-    resolution: {integrity: sha512-TotjFaaXveVUdsrXCdalyF6E5RyG6+7hHHQVZonQtdlk1rJZ1myDIvPUUKPhoYv+JAzThb2lQJh9+9ZfF46hsA==}
+  '@tsconfig/recommended@1.0.10':
+    resolution: {integrity: sha512-cGvydvg03lONp5Z9yaplW493Vw9/um7k588mvDkm+VFPF2PZUVPx0uswq4PFpeEySsLbQRETrDRhzh4Dmxaslw==}
 
   '@types/node@22.13.10':
     resolution: {integrity: sha512-I6LPUvlRH+O6VRUqYOcMudhaIdUVWfsjnZavnsraHvpBwaEyMN29ry+0UVJhImYL16xsscu0aske3yA+uPOWfw==}
@@ -305,7 +305,7 @@ snapshots:
   '@esbuild/win32-x64@0.25.1':
     optional: true
 
-  '@tsconfig/recommended@1.0.8': {}
+  '@tsconfig/recommended@1.0.10': {}
 
   '@types/node@22.13.10':
     dependencies:
