@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/skateresults/import-schema/compare/v0.6.0...v0.7.0) (2025-07-24)
+
+
+### Features
+
+* add `transponderCodes` to athletes ([92e4ce9](https://github.com/skateresults/import-schema/commit/92e4ce9e60f52dddd704d42eee84ed741ec84be3))
+
 ## [0.6.0](https://github.com/skateresults/import-schema/compare/v0.5.0...v0.6.0) (2025-06-15)
 
 
