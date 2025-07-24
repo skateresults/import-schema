@@ -1,4 +1,5 @@
 import {
+  array,
   description,
   integer,
   length,
@@ -7,6 +8,7 @@ import {
   nonEmpty,
   nullable,
   number,
+  optional,
   pipe,
   strictObject,
   string,
@@ -34,4 +36,6 @@ export const athlete = strictObject({
     overall: overallResults,
     competitions: competitionResults,
   }),
+
+  transponderCodes: optional(array(pipe(string(), nonEmpty())), []),
 });

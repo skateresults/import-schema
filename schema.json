@@ -426,6 +426,14 @@
             "competitions"
           ],
           "additionalProperties": false
+        },
+        "transponderCodes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": []
         }
       },
       "required": [
