@@ -19,6 +19,7 @@ export * from "./ageGroup.js";
 export * from "./competition.js";
 export * from "./evaluation.js";
 export * from "./round.js";
+export * from "./shared.js";
 
 export const root = strictObject({
   version: literal(1),

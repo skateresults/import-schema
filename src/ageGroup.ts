@@ -14,11 +14,12 @@ import {
   union,
 } from "valibot";
 import { competition } from "./competition.js";
+import { id } from "./shared.js";
 
 export const age = pipe(number(), integer(), description("Age in years"));
 
 export const ageGroup = strictObject({
-  id: pipe(string(), nonEmpty()),
+  id,
   name: pipe(string(), nonEmpty(), description("Name including the gender")),
   gender: union([literal("female"), literal("male"), literal("mixed")]),
 

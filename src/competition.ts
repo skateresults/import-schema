@@ -13,9 +13,10 @@ import {
   string,
 } from "valibot";
 import { round } from "./round.js";
+import { id } from "./shared.js";
 
 export const competition = strictObject({
-  id: pipe(string(), nonEmpty()),
+  id,
   name: pipe(string(), nonEmpty()),
   distance: pipe(
     optional(nullable(number()), null),
