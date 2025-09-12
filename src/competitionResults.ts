@@ -13,6 +13,7 @@ import {
   strictObject,
   string,
 } from "valibot";
+import { id } from "./shared.js";
 
 export const competitionRanking = strictObject({
   rank: nullable(pipe(number(), minValue(1), integer())),
