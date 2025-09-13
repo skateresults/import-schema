@@ -10,7 +10,7 @@ importers:
     dependencies:
       valibot:
         specifier: ^1.0.0
-        version: 1.0.0(typescript@5.8.2)
+        version: 1.0.0(typescript@5.9.2)
     devDependencies:
       '@tsconfig/recommended':
         specifier: 1.0.10
@@ -20,13 +20,13 @@ importers:
         version: 22.18.1
       '@valibot/to-json-schema':
         specifier: 1.3.0
-        version: 1.3.0(valibot@1.0.0(typescript@5.8.2))
+        version: 1.3.0(valibot@1.0.0(typescript@5.9.2))
       tsx:
         specifier: 4.20.5
         version: 4.20.5
       typescript:
-        specifier: 5.8.2
-        version: 5.8.2
+        specifier: 5.9.2
+        version: 5.9.2
 
 packages:
 
@@ -212,8 +212,8 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  typescript@5.8.2:
-    resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
+  typescript@5.9.2:
+    resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -311,9 +311,9 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@valibot/to-json-schema@1.3.0(valibot@1.0.0(typescript@5.8.2))':
+  '@valibot/to-json-schema@1.3.0(valibot@1.0.0(typescript@5.9.2))':
     dependencies:
-      valibot: 1.0.0(typescript@5.8.2)
+      valibot: 1.0.0(typescript@5.9.2)
 
   esbuild@0.25.1:
     optionalDependencies:
@@ -359,10 +359,10 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  typescript@5.8.2: {}
+  typescript@5.9.2: {}
 
   undici-types@6.21.0: {}
 
-  valibot@1.0.0(typescript@5.8.2):
+  valibot@1.0.0(typescript@5.9.2):
     optionalDependencies:
-      typescript: 5.8.2
+      typescript: 5.9.2
