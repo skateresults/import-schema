@@ -22,6 +22,7 @@ import {
   roundStatus,
   time,
   timetableNumber,
+  id,
 } from "../src";
 
 const jsonSchema = toJsonSchema(root, {
@@ -53,6 +54,8 @@ const jsonSchema = toJsonSchema(root, {
     ageGroup,
     // evaluation.ts
     evaluation,
+    // shared.ts
+    id,
   },
 });
 

@@ -16,9 +16,10 @@ import {
 } from "valibot";
 import { competitionResults } from "./competitionResults.js";
 import { overallResults } from "./overallResults.js";
+import { id } from "./shared.js";
 
 export const athlete = strictObject({
-  id: pipe(string(), nonEmpty()),
+  id,
   bib: nullable(pipe(number(), minValue(1), integer())),
   lastName: pipe(string(), nonEmpty()),
   firstName: pipe(string(), nonEmpty()),
