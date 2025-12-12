@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/skateresults/import-schema/compare/v0.7.0...v0.8.0) (2025-12-12)
+
+
+### Features
+
+* limit ids to specific characters & length ([#52](https://github.com/skateresults/import-schema/issues/52)) ([04eb328](https://github.com/skateresults/import-schema/commit/04eb328b3e40e67d39317b97c982b8e20a5d06a2))
+
 ## [0.7.0](https://github.com/skateresults/import-schema/compare/v0.6.0...v0.7.0) (2025-07-24)
 
 
