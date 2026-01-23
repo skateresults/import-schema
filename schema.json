@@ -1,5 +1,4 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
     "version": {
@@ -39,6 +38,7 @@
     "evaluations"
   ],
   "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "$defs": {
     "competitionRanking": {
       "type": "object",
@@ -259,6 +259,9 @@
             },
             {
               "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
               "additionalProperties": {
                 "$ref": "#/$defs/competitionRanking"
               },
@@ -275,6 +278,9 @@
     },
     "competitionResults": {
       "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
       "additionalProperties": {
         "$ref": "#/$defs/competitionResult"
       },
@@ -329,6 +335,9 @@
         },
         {
           "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
           "additionalProperties": {
             "$ref": "#/$defs/overallRanking"
           },
