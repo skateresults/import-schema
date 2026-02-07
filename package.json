@@ -6,7 +6,7 @@
   "files": [
     "dist"
   ],
-  "packageManager": "pnpm@10.25.0",
+  "packageManager": "pnpm@10.29.1",
   "license": "MIT",
   "type": "module",
   "bugs": {
